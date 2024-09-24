@@ -11,7 +11,9 @@ the proposed project:
     Welfare support for the elderly population in Texas that includes nearest healthcare centers, nursing homes, and nearby entertainment
 
 URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
-
+    1. Health Centers: https://data.medicare.gov/developers (Restful API)
+    2. Nursing Homes: https://caretexas.net/list01_Texas_nursing_homes.htm 
+    3. Entertainment: https://www.traveltexas.com/
 
 
 at least three models:
@@ -36,14 +38,12 @@ Entertaiment:
     Name, City, Cost, Address, Website, Phone, Number, Hours, Ratings
 
 Describe five of those attributes for each model that you can filter or sort:
-
+    
 
 Instances of each model must connect to instances of at least two other models:
     All models are connected to each other through proximity.
 
-Instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this):
-
-
+Instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)
 Describe two types of media for instances of each model:
     Nearest Health Centers:
         images, maps, text, keywords (surgery, PT, dental,)
@@ -59,4 +59,3 @@ Describe three questions that your site will answer:
     1. Where is the nearest healthcare provider for me?
     2. Where can I find nursing homes located in my area?
     3. Where can the elderly go for entertainment near them?
-        
