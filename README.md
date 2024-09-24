@@ -35,10 +35,10 @@ Nursing Homes:
     Name, City, Address, Website, Phone Number, Hours, Ratings
 
 Entertaiment: 
-    Name, City, Cost, Address, Website, Phone, Number, Hours, Ratings
+    Name, City, Cost, Address, Website, Phone Number, Hours, Ratings
 
 Describe five of those attributes for each model that you can filter or sort:
-    
+    City, Ratings, Name, Hours, Proximity
 
 Instances of each model must connect to instances of at least two other models:
     All models are connected to each other through proximity.
@@ -46,7 +46,7 @@ Instances of each model must connect to instances of at least two other models:
 Instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)
 Describe two types of media for instances of each model:
     Nearest Health Centers:
-        images, maps, text, keywords (surgery, PT, dental,)
+        images, maps, text, keywords (surgery, PT, dental, etc.)
 
     Nursing Homes: 
         Images, Maps, Google Maps Ratings
