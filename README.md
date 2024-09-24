@@ -5,19 +5,24 @@ names of the team members:
 Rikhil Kalidindi, Will Kung, Benny Nguyen, Rohan Aggarwal, Pranav Akkaraju
 
 name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):
-
+SeniorUplift
 
 the proposed project:
-
+Welfare support for the elderly population in Texas
 
 URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
 
 
-at least three models:
 
+at least three models:
+Nearest Hospitals
+Nursing Homes
+Entertainment
 
 an estimate of the number of instances of each model:
-
+Nearest Hospitals: 300+
+Nursing Homes: 300+
+Entertainment: 400+
 
 each model must have many attributes:
 
