@@ -1,0 +1,24 @@
+Phase 1: Group 8 Techinical Report
+
+- Motivation
+    - The motivation behind our project, SeniorUplift, stems from the growing need for easily accessible welfare 
+    resources for the elderly population in Texas. As healthcare needs increase with age, it is crucial to ensure 
+    that seniors can quickly locate nearby healthcare centers and nursing homes to receive proper care. Moreover, 
+    promoting mental health and well-being by providing information about local entertainment and social activities 
+    helps seniors maintain an active and enjoyable lifestyle. By integrating these resources into a user-friendly 
+    platform, we aim to uplift the quality of life for the elderly, ensuring they have easy access to the support 
+    and services they need in their community.
+
+
+- User Stories
+
+- Frontend Architecture
+
+- RESTful API
+
+- Tools
+
+- Hosting
+    - NameCheap was used to manage the domain "senioruplift.me"
+
+- Challenges
