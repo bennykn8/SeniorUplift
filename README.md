@@ -1,7 +1,7 @@
 # SeniorUplift
 **Website Link:** https://senioruplift.me   
 **API Link:**  
-**Postman API Documentation:** https://documenter.getpostman.com/view/32954458/2sA2r6WPJG  
+**Postman API Documentation:** https://documenter.getpostman.com/view/38703996/2sAXxJgtx8
 
 
 ### Canvas / Slack group number: 
