@@ -51,7 +51,7 @@ Describe two types of media for instances of each model:
     Nursing Homes: 
         Images, Maps, Google Maps Ratings
 
-    Entertaiment: 
+    Entertainment: 
         Images, Videos, Maps
 
 

@@ -11,14 +11,39 @@ Phase 1: Group 8 Techinical Report
 
 
 - User Stories
+    - Easy Navigation and Overview : 
+        As a first-time visitor, I want to navigate the site easily and learn about the team to understand who contributed 
+        to the platform and the motivation behind why it was built.
+    - View Details of My Options : 
+        As a user, I want to click on the places the website provides to easily get more detailed information, including 
+        addresses and contact info so I can attend these places.
+    - Nearby Activity Options : 
+        As an elderly user, I want to discover new entertainment options near me so that I can participate in activities 
+        that are accessible and enjoyable.
+    - Find Local Nursing Homes : 
+        As a family member looking for elderly care, I want to have a list of local nursing homes so that I can compare different 
+        options for my loved one’s care.
+    - Display Healthcare Centers Information : 
+        As an elderly user, I want to view a list of nearby healthcare centers so that I can easily find the closest medical support
+        that matches my needs.
+    
 
 - Frontend Architecture
+    - 
 
 - RESTful API
+    - 
 
 - Tools
+    - Bootstrap is used for styling effects and to make designing UI easier for our frontend template 
+    
 
 - Hosting
     - NameCheap was used to manage the domain "senioruplift.me"
+    - AWS Amplify was used to host our website for our frontend folder.
 
 - Challenges
+    - Finding time that everyone was avaible
+    - Delegatinging tasks evenly to each group member
+    - Figuring out how to ping the Gitlab library
+    - Figuring out how to implement AWS
