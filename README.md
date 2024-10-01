@@ -1,3 +1,9 @@
+# SeniorUplift
+**Website Link:** https://senioruplift.me   
+**API Link:**  
+**Postman API Documentation:** https://documenter.getpostman.com/view/32954458/2sA2r6WPJG  
+
+
 ### Canvas / Slack group number: 
 * group-08
 
@@ -5,7 +11,7 @@
 * Rikhil Kalidindi, Will Kung, Benny Nguyen, Rohan Aggarwal, Pranav Akkaraju
 
 ### name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):
-* SeniorUplift
+* senior
 
 ### the proposed project:
 * Welfare support for the elderly population in Texas that includes nearest healthcare centers, nursing homes, and nearby entertainment
