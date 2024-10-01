@@ -1,0 +1,12 @@
+stages:
+  - validate
+
+validate_html:
+  image: node:latest
+  stage: validate
+  before_script:
+    - npm install -g htmlhint  # Install HTML validation tool globally
+  script:
+    - htmlhint front-end/*.html  # Validate all HTML files in the front-end directory
+  only:
+    - main 

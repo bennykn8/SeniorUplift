@@ -36,6 +36,7 @@ Phase 1: Group 8 Techinical Report
 
 - Tools
     - Bootstrap is used for styling effects and to make designing UI easier for our frontend template 
+    - Wrote the .gitlab-ci.yml file to validate whether the html syntax within the frontend folder is working.
     
 
 - Hosting
