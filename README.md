@@ -24,7 +24,7 @@
 
 ### at least three models:
 * Nearest healthcare centers
-* Nursing Homes
+* Nursing Homes 
 * Entertainment
 
 ### an estimate of the number of instances of each model:
@@ -59,7 +59,6 @@
 
 * Entertainment: 
     Images, Videos, Maps
-
 
 ### Describe three questions that your site will answer:
 1. Where is the nearest healthcare provider for me?
