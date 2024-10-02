@@ -29,10 +29,38 @@ Phase 1: Group 8 Techinical Report
     
 
 - Frontend Architecture
-    - 
+    - Navbar that consists of links to splash page, about page, 3 model pages
+    - Splash page contains brief description of website and welcome image
+        - Relevant files: src/front-end/index.html
+    - About page contains information on each of team member: biography, major responsibility, number of commits, issues, unit tests
+        - number of commits and issues dynamically pinged from GitLab API 
+        - Relevant files: src/front-end/about.html
+    - Model pages for nursing homes, health centers, and entertainment centers
+        - contains 3 instance cards including image and 5 attributes
+        - Relevant files: 
+            - src/front-end/entertainment.html
+            - src/front-end/healthcare.html
+            - src/front-end/nursing_homes.html
+    - Instances pages (9)
+        - contains image, location map embedded from google maps embedded, name of place, address, detailed description,
+         featured services, 5 attributes (same as ones on card), connection links to other two models, link to location's website 
+        - Relevant files: 
+            - src/front-end/instance_one_health_care.html
+            - src/front-end/instance_two_health_care.html
+            - src/front-end/instance_three_health_care.html
+            - src/front-end/instance_one_nursing_home.html
+            - src/front-end/instance_two_nursing_home.html
+            - src/front-end/instance_three_nursing_home.html
+            - src/front-end/instance_one_entertainment.html
+            - src/front-end/instance_two_entertainment.html
+            - src/front-end/instance_three_entertainment.html
 
 - RESTful API
-    - 
+    - Used to scrap and fetch data of model instances from our website
+    - 6 requests are documented:
+        Per model:
+        - Get information on single instance given instance ID
+        - Get information on all instances of a model. Parameters can be provided to sort, filter instances
 
 - Tools
     - Bootstrap is used for styling effects and to make designing UI easier for our frontend template 
