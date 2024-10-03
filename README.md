@@ -83,3 +83,5 @@ Benny Nguyen - 7 hrs
 
 Phase Leader: Rohan Aggarwal
 Phase Leader Responsibilities: Phase leader Rohan keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
+
+Final Git SHA for Phase 1: b48f1ec50ba4a88d7988c4f5f10e2720e9c107f9
