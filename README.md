@@ -1,6 +1,6 @@
 # SeniorUplift
 **Website Link:** https://senioruplift.me   
-**API Link:**  https://data.cms.gov/provider-data/?redirect=true
+**API Link:**  _TODO in later phase_
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/38703996/2sAXxJgtx8
 
