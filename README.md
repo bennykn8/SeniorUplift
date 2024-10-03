@@ -1,5 +1,5 @@
 # SeniorUplift
-**Website Link:** https://senioruplift.me   
+**Website Link:** https://senioruplift.me or senioruplift.me because DNS propagation may still be in progress for https
 **API Link:**  _TODO in later phase_
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/38703996/2sAXxJgtx8
