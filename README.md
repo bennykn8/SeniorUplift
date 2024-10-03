@@ -1,5 +1,5 @@
 # SeniorUplift
-**Website Link:** senioruplift.me
+**Website Link:** [senioruplift.me](senioruplift.me)
 **API Link:**  _TODO in later phase_
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/38703996/2sAXxJgtx8
