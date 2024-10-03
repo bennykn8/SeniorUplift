@@ -12,7 +12,7 @@
 * Rikhil Kalidindi, Will Kung, Benny Nguyen, Rohan Aggarwal, Pranav Akkaraju
 
 ### name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):
-* senior
+* SeniorUplift
 
 ### the proposed project:
 * Welfare support for the elderly population in Texas that includes nearest healthcare centers, nursing homes, and nearby entertainment
