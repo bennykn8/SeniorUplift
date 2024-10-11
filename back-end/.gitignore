@@ -1,1 +1,5 @@
 .venv
+api.*
+create_db*
+database.db
+db.py
