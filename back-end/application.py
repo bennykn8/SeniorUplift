@@ -24,7 +24,31 @@ class HealthCenterModel (db.Model) :
 
     def __repr__ (self):
         return f"Health Center( Name: {self.name}, City: {self.city}, Ratings: {self.ratings}, Hours: {self.hours}, Phone Number: {self.phone})"
-    
+
+#describes nursing home model
+class NursingHomeModel (db.Model) :
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    city = db.Column(db.String(255), unique=True, nullable=False)
+    ratings = db.Column(db.Float)
+    hours = db.Column(db.String(255), unique=True, nullable=False)
+    phone = db.Column(db.String(255), unique=True, nullable=False)
+
+    def __repr__ (self):
+        return f"Nursing Home( Name: {self.name}, City: {self.city}, Ratings: {self.ratings}, Hours: {self.hours}, Phone Number: {self.phone})"
+
+#describes entertainment model
+class EntertainmentModel (db.Model) :
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    city = db.Column(db.String(255), unique=True, nullable=False)
+    ratings = db.Column(db.Float)
+    hours = db.Column(db.String(255), unique=True, nullable=False)
+    phone = db.Column(db.String(255), unique=True, nullable=False)
+
+    def __repr__ (self):
+        return f"Entertainment( Name: {self.name}, City: {self.city}, Ratings: {self.ratings}, Hours: {self.hours}, Phone Number: {self.phone})"
+
 #validate input
 #for post/patch requests, may not need
 healthcenter_args = reqparse.RequestParser()
@@ -51,6 +75,16 @@ class HealthCenters(Resource):
     def get(self):
         hcs = HealthCenterModel.query.all()
         return hcs
+    '''
+    #post hc
+    @marshal_with(hcFields)
+    def post(self):
+        args = healthcenter_args.parse_args()
+        user = HealthCenterModel(name = args["name"], city = args["city"], ratings = args["ratings"], hours = args["hours"], phone = args["phone"])
+        db.session.add(user)
+        db.session.commit()
+        hcs = HealthCenterModel.query.all()
+        return hcs, 201'''
     
 class HealthCenter(Resource):
 
@@ -61,10 +95,60 @@ class HealthCenter(Resource):
         if not hc:
             abort(404, "health center not found")
         return hc
+    '''
+    @marshal_with(hcFields)
+    def delete(self, id):
+        user = HealthCenterModel.query.filter_by(id=id).first()
+        if not user:
+            abort(404, "user not found")
+        db.session.delete(user)
+        db.session.commit()
+        users = HealthCenterModel.query.all()
+        return users'''
+    
+class NursingHomes(Resource):
 
+    #get all health centers
+    @marshal_with(hcFields)
+    def get(self):
+        nhs = NursingHomeModel.query.all()
+        return nhs
+    
+class NursingHome(Resource):
+
+    #get single health center
+    @marshal_with(hcFields)
+    def get(self, id):
+        nh = NursingHomeModel.query.filter_by(id=id).first()
+        if not nh:
+            abort(404, "nursing home not found")
+        return nh
+    
+class Entertainments(Resource):
+
+    #get all health centers
+    @marshal_with(hcFields)
+    def get(self):
+        entertains = EntertainmentModel.query.all()
+        return entertains
+    
+class Entertainment(Resource):
+
+    #get single health center
+    @marshal_with(hcFields)
+    def get(self, id):
+        entertain = EntertainmentModel.query.filter_by(id=id).first()
+        if not entertain:
+            abort(404, "entertainment center not found")
+        return entertain
+    
         
 api.add_resource(HealthCenters, '/api/healthcenters/')
 api.add_resource(HealthCenter, '/api/healthcenter/<int:id>')
+api.add_resource(NursingHomes, '/api/nursinghomes/')
+api.add_resource(NursingHome, '/api/nursinghome/<int:id>')
+api.add_resource(Entertainments, '/api/entertaiments/')
+api.add_resource(Entertainment, '/api/entertainment/<int:id>')
 
 
 
