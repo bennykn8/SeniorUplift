@@ -1,8 +1,11 @@
 import React from 'react';
 import './FrontPage.css';  // Assuming the CSS file is named FrontPage.css
 import { Carousel } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const FrontPage = () => {
+  const navigate = useNavigate();  // Initialize navigate
+
   return (
     <div className="container-fluid">
       <div className="hero-section">
@@ -46,7 +49,11 @@ const FrontPage = () => {
       </div>
 
       <div className="row justify-content-center mt-5 features-section" id="learn-more">
-        <div className="col-md-4 text-center feature-item">
+
+
+        <div className="col-md-4 text-center feature-item"
+        onClick={() => navigate('/healthcare')} 
+        style={{ cursor: 'pointer' }} >
           <img
             src="https://media.gettyimages.com/id/183361838/photo/medical-center.jpg?s=612x612&w=gi&k=20&c=405YNZE_8YM3kx_mNIw4AqnNPVPln6oby6UcYEq1rCA="
             alt="Elderly people enjoying life"
@@ -55,7 +62,13 @@ const FrontPage = () => {
           <h3 className="mt-3">Healthcare Centers</h3>
           <p>Find the best healthcare centers nearby with ratings and reviews.</p>
         </div>
-        <div className="col-md-4 text-center feature-item">
+
+        {/* Nursing Homes Box as a Button */}
+        <div 
+          className="col-md-4 text-center feature-item clickable-box" 
+          onClick={() => navigate('/nursing-homes')} 
+          style={{ cursor: 'pointer' }} 
+        >
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzVx_1TJ2qSPMFcF_cHPh32Bqx4z2-7x0z4g&s"
             alt="Nursing Homes"
@@ -64,7 +77,13 @@ const FrontPage = () => {
           <h3 className="mt-3">Nursing Homes</h3>
           <p>Locate top-rated nursing homes within your vicinity for elderly care.</p>
         </div>
-        <div className="col-md-4 text-center feature-item">
+
+        <div 
+        className="col-md-4 text-center feature-item"
+        onClick={() => navigate('/entertainment')} 
+          style={{ cursor: 'pointer' }} 
+        >
+          
           <img
             src="https://fairviewadc.com/wp-content/uploads/2019/08/elderly-entertainment.jpg"
             alt="Entertainment"
