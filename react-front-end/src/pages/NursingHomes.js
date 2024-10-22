@@ -1,45 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './NursingHomes.css';
-import axios from 'axios'; // Import Axios for API calls
+import axios from 'axios'; 
 
 const NursingHomes = () => {
-  const [nursingHomesData, setNursingHomesData] = useState([]); // State for nursing homes data
-  const [currentPage, setCurrentPage] = useState(1); // State for pagination
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [nursingHomesData, setNursingHomesData] = useState([]); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
 
-  const homesPerPage = 9; // Number of homes to display per page
+  const homesPerPage = 9;
 
-  // Function to fetch data from the API
   const fetchNursingHomes = async () => {
     try {
-      setLoading(true); // Set loading to true while fetching data
-      const response = await axios.get('http://localhost:3000/api/nursinghomes/google'); // Fetch all cities' nursing homes
+      setLoading(true); 
+      const response = await axios.get('http://localhost:5000/api/nursinghomes/google'); 
       if (response.data.nursing_homes) {
-        setNursingHomesData(response.data.nursing_homes); // Set the data from API response
+        setNursingHomesData(response.data.nursing_homes); 
       }
     } catch (err) {
       setError('Error fetching data, please try again later');
     } finally {
-      setLoading(false); // Set loading to false when done
+      setLoading(false); 
     }
   };
-  
-  // Example of calling fetchNursingHomes with a user-selected city
-  fetchNursingHomes("Dallas");  // You can dynamically change this based on user input
-  
 
-  // Call fetchNursingHomes when the component mounts
   useEffect(() => {
-    fetchNursingHomes(); // Fetch data when the component loads
+    fetchNursingHomes(); 
   }, []);
 
-  // Get current homes for pagination
+
   const indexOfLastHome = currentPage * homesPerPage;
   const indexOfFirstHome = indexOfLastHome - homesPerPage;
   const currentHomes = nursingHomesData.slice(indexOfFirstHome, indexOfLastHome);
 
-  // Page navigation
+
   const totalPages = Math.ceil(nursingHomesData.length / homesPerPage);
 
   const nextPage = () => {
@@ -55,11 +49,11 @@ const NursingHomes = () => {
   };
 
   if (loading) {
-    return <div>Loading nursing homes...</div>; // Show loading message while fetching data
+    return <div>Loading nursing homes...</div>; 
   }
 
   if (error) {
-    return <div>{error}</div>; // Show error message if there's an error
+    return <div>{error}</div>;
   }
 
   return (
@@ -74,15 +68,15 @@ const NursingHomes = () => {
         {currentHomes.map((home, index) => (
           <div key={index} className="nursing-home-item">
             <h3>{home.name}</h3>
-            <p>Location: {home.formatted_address}</p>
+            <p>Location: {home.address}</p>
             <p>Rating: {home.rating ? `${home.rating}/5` : "No rating available"}</p>
-            <p>Phone: {home.formatted_phone_number || "Phone not available"}</p>
+            <p>Phone: {home.phone || "Phone not available"}</p>
             <p>Website: <a href={home.website} target="_blank" rel="noopener noreferrer">{home.website || "Website not available"}</a></p>
+            <p>Hours: {home.hours.length ? home.hours.join(', ') : "No hours available"}</p>
           </div>
         ))}
       </div>
 
-      {/* Pagination controls */}
       <div className="pagination-controls">
         <button 
           onClick={prevPage} 

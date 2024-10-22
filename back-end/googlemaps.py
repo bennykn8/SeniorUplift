@@ -1,47 +1,63 @@
 import requests
 
-# Store your Google Maps API key securely (you can use environment variables or a config file)
-API_KEY = 'AIzaSyBiWxv77gAJZQ1Fp5dFujGdDIXiDTUX__8'
+API_KEY = 'AIzaSyBiWxv77gAJZQ1Fp5dFujGdDIXiDTUX__8'  
 
-# List of cities in Texas
-TEXAS_CITIES = [
-    "Houston", "Austin", "Dallas", "San Antonio", "El Paso", "Fort Worth", 
-    "Arlington", "Corpus Christi", "Plano", "Lubbock", "Laredo", "Irving", 
-    "Garland", "Frisco", "Amarillo", "Grand Prairie", "McKinney", "Brownsville", 
-    "Killeen", "McAllen", "Pasadena", "Mesquite", "Denton", "Waco", "Midland", 
-    "Carrollton", "Abilene"
-]
 
-# Function to make a request to the Google Places API (Text Search)
+TEXAS_CITIES = ["Houston", "Austin"]
+
+
 def get_nursing_homes_in_city(city):
     url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    
-    # Query to search for nursing homes in the given city
     params = {
         'query': f'nursing homes in {city}',
-        'key': API_KEY
+        'key': API_KEY,
     }
-
-    # Make a GET request to the Google Places API
     response = requests.get(url, params=params)
     
-    # Check if the request was successful
     if response.status_code == 200:
-        # Parse the JSON response
         data = response.json()
-        return data['results']  # Returns a list of results (nursing homes)
+        results = []
+        
+        for result in data.get('results', []):
+            place_id = result.get('place_id')
+            if place_id:
+                details = get_place_details(place_id)
+                if details:
+                    result_data = {
+                        'name': details.get('name'),
+                        'address': details.get('formatted_address'),
+                        'rating': details.get('rating'),
+                        'website': details.get('website'),
+                        'phone': details.get('formatted_phone_number'),
+                        'hours': details.get('opening_hours', {}).get('weekday_text', [])
+                    }
+                    results.append(result_data)
+        return results
     else:
         print(f"Error: {response.status_code} - {response.text}")
         return None
 
-# Function to fetch nursing homes from all cities in the TEXAS_CITIES list
+def get_place_details(place_id):
+    url = 'https://maps.googleapis.com/maps/api/place/details/json'
+    params = {
+        'place_id': place_id,
+        'key': API_KEY,
+        'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,rating'
+    }
+    response = requests.get(url, params=params)
+    
+    if response.status_code == 200:
+        return response.json().get('result', {})
+    else:
+        print(f"Error fetching details for place_id {place_id}: {response.status_code} - {response.text}")
+        return None
+
 def get_nursing_homes_from_all_cities():
     all_nursing_homes = []
     
-    # Loop through all Texas cities and get nursing homes
     for city in TEXAS_CITIES:
         city_homes = get_nursing_homes_in_city(city)
         if city_homes:
-            all_nursing_homes.extend(city_homes)  # Combine all nursing homes into one list
+            all_nursing_homes.extend(city_homes)  
     
     return all_nursing_homes
