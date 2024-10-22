@@ -10,7 +10,7 @@ RUN apt-get install -y python3
 RUN pip3 install --upgrade pip
 #RUN apt install python3-pip
 
-WORKDIR /back-end
+#WORKDIR /back-end
 COPY ./requirements.txt ./
 
 #install dependencies (flask, flask_restful, flask_sqlalchemy)
