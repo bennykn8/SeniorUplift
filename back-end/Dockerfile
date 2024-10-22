@@ -19,4 +19,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 #RUN pip install flask_restful
 #RUN pip install flask_sqlalchemy
 
-CMD ["bin/bash"]
+CMD ["/bin/bash"]
