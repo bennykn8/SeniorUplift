@@ -14,6 +14,7 @@ const NursingHomes = () => {
     try {
       setLoading(true); 
       const response = await axios.get('http://localhost:5000/api/nursinghomes/google'); 
+      console.log("Response data:", response.data.nursing_homes); // Log response
       if (response.data.nursing_homes) {
         setNursingHomesData(response.data.nursing_homes); 
       }
@@ -32,6 +33,8 @@ const NursingHomes = () => {
   const indexOfLastHome = currentPage * homesPerPage;
   const indexOfFirstHome = indexOfLastHome - homesPerPage;
   const currentHomes = nursingHomesData.slice(indexOfFirstHome, indexOfLastHome);
+  console.log("Current homes to display:", currentHomes);
+
 
 
   const totalPages = Math.ceil(nursingHomesData.length / homesPerPage);
