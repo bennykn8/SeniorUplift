@@ -6,6 +6,8 @@ RUN apt-get update
 #install python
 RUN apt-get install -y python3
 
+RUN apt-get install mysql-client
+
 #install pip
 RUN pip3 install --upgrade pip
 #RUN apt install python3-pip
