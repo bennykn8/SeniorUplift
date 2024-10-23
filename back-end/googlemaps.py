@@ -1,16 +1,22 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-API_KEY = 'AIzaSyBiWxv77gAJZQ1Fp5dFujGdDIXiDTUX__8'  
+load_dotenv()
 
+Google_Maps_API = os.getenv('GOOGLE_MAPS_API_KEY')
+Google_Custom_Search_API_Key = os.getenv('GOOGLE_IMAGE_API_KEY')
+Google_CSE_ID = os.getenv('GOOGLE_CSE_ID')
 
+# List of cities in Texas
 TEXAS_CITIES = ["Houston", "Austin"]
 
-
+# Function to get nursing homes in a city
 def get_nursing_homes_in_city(city):
     url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
     params = {
         'query': f'nursing homes in {city}',
-        'key': API_KEY,
+        'key': Google_Maps_API,
     }
     response = requests.get(url, params=params)
     
@@ -18,18 +24,26 @@ def get_nursing_homes_in_city(city):
         data = response.json()
         results = []
         
+        # Fetch details for each nursing home
         for result in data.get('results', []):
             place_id = result.get('place_id')
             if place_id:
                 details = get_place_details(place_id)
                 if details:
+                    if 'photos' in details and len(details['photos']) > 0:
+                        photo_reference = details['photos'][0]['photo_reference']
+                        image_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_reference}&key={Google_Maps_API}"
+                    else:
+                        image_url = get_image_url(details.get('name'))
+                    
                     result_data = {
                         'name': details.get('name'),
                         'address': details.get('formatted_address'),
                         'rating': details.get('rating'),
                         'website': details.get('website'),
                         'phone': details.get('formatted_phone_number'),
-                        'hours': details.get('opening_hours', {}).get('weekday_text', [])
+                        'hours': details.get('opening_hours', {}).get('weekday_text', []),
+                        'image_url': image_url
                     }
                     results.append(result_data)
         return results
@@ -37,12 +51,14 @@ def get_nursing_homes_in_city(city):
         print(f"Error: {response.status_code} - {response.text}")
         return None
 
+
+
 def get_place_details(place_id):
     url = 'https://maps.googleapis.com/maps/api/place/details/json'
     params = {
         'place_id': place_id,
-        'key': API_KEY,
-        'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,rating'
+        'key': Google_Maps_API,
+        'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,rating,photos'
     }
     response = requests.get(url, params=params)
     
@@ -52,12 +68,40 @@ def get_place_details(place_id):
         print(f"Error fetching details for place_id {place_id}: {response.status_code} - {response.text}")
         return None
 
+
+def get_image_url(query):
+    url = 'https://www.googleapis.com/customsearch/v1'
+    params = {
+        'q': query,
+        'cx': Google_CSE_ID,
+        'key': Google_Custom_Search_API_Key,
+        'searchType': 'image',
+        'num': 1, 
+        'fileType': 'jpg|png',
+        'imgType': 'photo'
+    }
+    
+    response = requests.get(url, params=params)
+    
+    if response.status_code == 200:
+        search_results = response.json()
+        if 'items' in search_results:
+            image_url = search_results['items'][0]['link']
+            print(f"Image URL for {query}: {image_url}")  
+            return image_url 
+    else:
+        print(f"Error fetching image: {response.status_code} - {response.text}")
+    return None
+
+
+# Function to get nursing homes from all cities in the TEXAS_CITIES list
 def get_nursing_homes_from_all_cities():
     all_nursing_homes = []
     
+    # Loop through all Texas cities and get nursing homes
     for city in TEXAS_CITIES:
         city_homes = get_nursing_homes_in_city(city)
         if city_homes:
-            all_nursing_homes.extend(city_homes)  
+            all_nursing_homes.extend(city_homes)
     
     return all_nursing_homes

@@ -6,15 +6,13 @@ from googlemaps import get_nursing_homes_from_all_cities
 
 
 app = Flask(__name__)
-<<<<<<< Updated upstream
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #change this to connect with website database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://admin:%y9Ep^9i^$@backend-db.c9me2cwiud0l.us-east-2.rds.amazonaws.com:3306"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-=======
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' 
->>>>>>> Stashed changes
 db = SQLAlchemy(app)
 api = Api(app)
+CORS(app)
+
 
 #api home endpoint
 @app.route('/api/')

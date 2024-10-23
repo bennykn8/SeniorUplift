@@ -1,46 +1,79 @@
+
 .nursing-homes-container {
   padding: 20px;
-  background-color: #f9f9f9;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;  
 }
 
-.nursing-homes-title {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.nursing-homes-description {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
-
-.nursing-homes-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
 
 .nursing-home-item {
-  background-color: white;
-  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
   margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 300px;
   text-align: center;
+  width: 230px;
+  display: inline-block;
+  vertical-align: top;
+  height: 370px;  
+  overflow: hidden; 
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  
+  position: relative;
 }
 
-.nursing-home-item h3 {
-  font-size: 1.5rem;
+.nursing-home-item:hover {
+  overflow-y: auto;  
+  padding-right: 15px;  
+}
+
+.nursing-home-image {
+  width: 100%;
+  max-width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
   margin-bottom: 10px;
 }
 
-.nursing-home-item p {
-  font-size: 1rem;
+
+.nursing-home-item h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 5px 0;
+  height: auto;
+  white-space: normal; 
+  overflow: hidden;
 }
 
-/* Pagination controls */
+
+.nursing-home-item p {
+  margin: 5px 0;
+  font-size: 0.9em;  
+  line-height: 1.4;  
+}
+
+
+.nursing-home-item a {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.85em; 
+}
+
+.nursing-home-item a:hover {
+  text-decoration: underline;
+}
+
+.nursing-home-item:hover {
+  overflow-y: auto; 
+}
+
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -49,21 +82,36 @@
 }
 
 .pagination-button {
-  background-color: #ff5733;
+  padding: 5px 15px;
+  margin: 0 5px;
+  background-color: #007bff;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  margin: 0 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.pagination-button:hover {
-  background-color: #c44b2e;
+  border-radius: 5px;
 }
 
 .pagination-button:disabled {
-  background-color: grey;
+  background-color: #ccc;
   cursor: not-allowed;
+}
+
+.nursing-homes-title {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+}
+
+.nursing-homes-description {
+  font-size: 1em;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+
+@media (max-width: 768px) {
+  .nursing-home-item {
+    width: 100%;  
+    margin: 10px 0;
+    height: auto;
+  }
 }
