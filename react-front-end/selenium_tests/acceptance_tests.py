@@ -57,7 +57,7 @@ class frontend_acceptance_tests(unittest.TestCase):
         text = self.driver.find_element(By.XPATH, "//h2[contains(text(), 'Project Stats')]")
         self.assertEqual(text.text, "Project Stats")
 
-    def test_7(self):
+    def test_7(self):        
         self.driver.get(url)  # Load the front page
         time.sleep(3)  # Wait for the page to load
         hero_title = self.driver.find_element(By.XPATH, "//h1[contains(text(), 'Welcome to SeniorUpLift')]")
