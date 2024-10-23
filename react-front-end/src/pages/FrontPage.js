@@ -10,7 +10,7 @@ const FrontPage = () => {
     <div className="container-fluid">
       <div className="hero-section">
         <div className="hero-text text-center">
-          <h1>Welcome to SeniorUplift</h1>
+          <h1>Welcome to SeniorUpLift</h1>
           <p>
             Helping the elderly in Texas find nearby healthcare centers, nursing homes,
             and entertainment options with ratings and proximity for easy access to services.
