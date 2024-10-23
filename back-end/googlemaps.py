@@ -1,6 +1,11 @@
 import requests
 import os
 from dotenv import load_dotenv
+from application import db, NursingHomeModel  # Import the database and model
+from sqlalchemy.exc import IntegrityError
+from application import db  # Import the db object from your app
+from application import NursingHomeModel  # Import the NursingHomeModel
+
 
 load_dotenv()
 
@@ -8,9 +13,11 @@ Google_Maps_API = os.getenv('GOOGLE_MAPS_API_KEY')
 Google_Custom_Search_API_Key = os.getenv('GOOGLE_IMAGE_API_KEY')
 Google_CSE_ID = os.getenv('GOOGLE_CSE_ID')
 
-# List of cities in Texas
-TEXAS_CITIES = ["Houston", "Austin"]
-
+TEXAS_CITIES = ["houston", "san-antonio", "dallas", "austin", "fort-worth", "el-paso", "arlington", 
+                      "corpus-christi", "plano", "lubbock", "laredo", "irving", "garland", "frisco", "amarillo", "grand-prairie", 
+                      "mckinney", "brownsville", "killeen", "mcallen", "pasadena", "mesquite-city", "denton", "waco", 
+                      "midland", "carrollton", "abilene"
+]
 # Function to get nursing homes in a city
 def get_nursing_homes_in_city(city):
     url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
@@ -19,11 +26,11 @@ def get_nursing_homes_in_city(city):
         'key': Google_Maps_API,
     }
     response = requests.get(url, params=params)
-    
+
     if response.status_code == 200:
         data = response.json()
         results = []
-        
+
         # Fetch details for each nursing home
         for result in data.get('results', []):
             place_id = result.get('place_id')
@@ -35,24 +42,29 @@ def get_nursing_homes_in_city(city):
                         image_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_reference}&key={Google_Maps_API}"
                     else:
                         image_url = get_image_url(details.get('name'))
-                    
-                    result_data = {
-                        'name': details.get('name'),
-                        'address': details.get('formatted_address'),
-                        'rating': details.get('rating'),
-                        'website': details.get('website'),
-                        'phone': details.get('formatted_phone_number'),
-                        'hours': details.get('opening_hours', {}).get('weekday_text', []),
-                        'image_url': image_url
-                    }
-                    results.append(result_data)
+
+                    # Store the nursing home in the database
+                    new_nursing_home = NursingHomeModel(
+                        name=details.get('name'),
+                        address=details.get('formatted_address'),
+                        rating=details.get('rating'),
+                        website=details.get('website'),
+                        phone=details.get('formatted_phone_number'),
+                        hours=", ".join(details.get('opening_hours', {}).get('weekday_text', [])),  # Convert list to string
+                        image_url=image_url
+                    )
+
+                    db.session.add(new_nursing_home)  # Add the new entry
+                    db.session.commit()  # Commit the changes to the database
+
+                    results.append(new_nursing_home)
+
         return results
     else:
         print(f"Error: {response.status_code} - {response.text}")
         return None
 
-
-
+# Function to get place details using Google Maps Place Details API
 def get_place_details(place_id):
     url = 'https://maps.googleapis.com/maps/api/place/details/json'
     params = {
@@ -61,14 +73,14 @@ def get_place_details(place_id):
         'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,rating,photos'
     }
     response = requests.get(url, params=params)
-    
+
     if response.status_code == 200:
         return response.json().get('result', {})
     else:
         print(f"Error fetching details for place_id {place_id}: {response.status_code} - {response.text}")
         return None
 
-
+# Function to get image URL using Google Custom Search API
 def get_image_url(query):
     url = 'https://www.googleapis.com/customsearch/v1'
     params = {
@@ -76,32 +88,43 @@ def get_image_url(query):
         'cx': Google_CSE_ID,
         'key': Google_Custom_Search_API_Key,
         'searchType': 'image',
-        'num': 1, 
+        'num': 1,
         'fileType': 'jpg|png',
         'imgType': 'photo'
     }
-    
+
     response = requests.get(url, params=params)
-    
+
     if response.status_code == 200:
         search_results = response.json()
         if 'items' in search_results:
             image_url = search_results['items'][0]['link']
-            print(f"Image URL for {query}: {image_url}")  
-            return image_url 
+            return image_url
     else:
         print(f"Error fetching image: {response.status_code} - {response.text}")
     return None
 
+# Function to store data in the database
+def store_in_database(data):
+    try:
+        nursing_home = NursingHomeModel(
+            name=data['name'],
+            address=data['address'],
+            rating=data['rating'],
+            website=data['website'],
+            phone=data['phone'],
+            hours=data['hours'],
+            image_url=data['image_url']
+        )
 
-# Function to get nursing homes from all cities in the TEXAS_CITIES list
+        db.session.add(nursing_home)
+        db.session.commit()
+        print(f"Stored: {data['name']} in the database.")
+    except IntegrityError as e:
+        db.session.rollback() 
+        print(f"Error storing {data['name']}: {e}")
+
+# Function to get nursing homes from all cities
 def get_nursing_homes_from_all_cities():
-    all_nursing_homes = []
-    
-    # Loop through all Texas cities and get nursing homes
     for city in TEXAS_CITIES:
-        city_homes = get_nursing_homes_in_city(city)
-        if city_homes:
-            all_nursing_homes.extend(city_homes)
-    
-    return all_nursing_homes
+        get_nursing_homes_in_city(city)

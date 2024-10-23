@@ -13,7 +13,8 @@ const NursingHomes = () => {
   const fetchNursingHomes = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/nursinghomes/google');
+      // Fetch data from the backend route that queries the database
+      const response = await axios.get('http://localhost:5000/api/nursinghomes'); 
       if (response.data.nursing_homes) {
         setNursingHomesData(response.data.nursing_homes);
       }
