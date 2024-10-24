@@ -11,7 +11,7 @@ Google_Maps_API = os.getenv('GOOGLE_MAPS_API_KEY')
 Google_Custom_Search_API_Key = os.getenv('GOOGLE_IMAGE_API_KEY')
 Google_CSE_ID = os.getenv('GOOGLE_CSE_ID')
 
-TEXAS_CITIES = ["laredo"]
+TEXAS_CITIES = ["houston"]
 
 # Function to get nursing homes in a city
 def get_nursing_homes_in_city(city):
