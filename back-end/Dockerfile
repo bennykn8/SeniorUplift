@@ -1,24 +1,21 @@
 FROM python
 
-# update Linux package manager
-RUN apt-get update
+# Update and install system packages
+RUN apt-get update && apt-get install -y \
+    python3 \
+    default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
 
-#install python
-RUN apt-get install -y python3
-
-RUN apt-get install mysql-client
-
-#install pip
+# Upgrade pip
 RUN pip3 install --upgrade pip
-#RUN apt install python3-pip
 
-#WORKDIR /back-end
-COPY ./requirements.txt ./
+# Set working directory
+WORKDIR /app
 
-#install dependencies (flask, flask_restful, flask_sqlalchemy)
+# Copy requirements file
+COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-#RUN pip install flask
-#RUN pip install flask_restful
-#RUN pip install flask_sqlalchemy
 
 CMD ["/bin/bash"]
