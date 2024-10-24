@@ -14,7 +14,7 @@ const NursingHomes = () => {
 
   const fetchNursingHomes = async () => {
     try {
-      const response = await axios.get('https://api.senioruplift.me/api/nursinghomes/');
+      const response = await axios.get('http://127.0.0.1:5000/api/nursinghomes/');
       if (response.data) {
         setNursingHomesData(response.data);  // Directly set response.data
       }
