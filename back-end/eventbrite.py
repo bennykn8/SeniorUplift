@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import csv
-from models import EntertainmentModel, db
-from flask import current_app
+from models import EntertainmentModel, db, app
 
 # Function to setup the web driver and fetch content from the given URL
 def launch_driver_and_get_page(url):
@@ -93,11 +92,11 @@ def scrape_event_for_cities():
     save_data_to_csv(all_event_list)
 
     # Transfer the data from CSV to the database
-    with current_app.app_context():
+    with app.app_context():
         transfer_csv_to_db()
 
 if __name__ == "__main__":
     # scrape_event_for_cities()
-    with current_app.app_context():
+    with app.app_context():
         # Transfer CSV data to the database without scraping again
         transfer_csv_to_db('events_data.csv')  # Make sure the path to the CSV file is correct
