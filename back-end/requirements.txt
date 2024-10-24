@@ -16,3 +16,4 @@ Werkzeug==3.0.4
 gunicorn
 PyMySQL
 flask-cors
+requests
