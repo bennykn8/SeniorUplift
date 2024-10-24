@@ -14,8 +14,8 @@ const NursingHomes = () => {
     try {
       // Fetch data from the backend route that queries the database
       const response = await axios.get('https://api.senioruplift.me/api/nursinghomes/'); 
-      if (response.data.nursing_homes) {
-        setNursingHomesData(response.data.nursing_homes);
+      if (response.data) {
+        setNursingHomesData(response.data);  // Directly set response.data
       }
     } catch (err) {
       setError('Error fetching data, please try again later');
@@ -77,7 +77,7 @@ const NursingHomes = () => {
             <p>Rating: {home.rating ? `${home.rating}/5` : "No rating available"}</p>
             <p>Phone: {home.phone || "Phone not available"}</p>
             <p>Website: <a href={home.website} target="_blank" rel="noopener noreferrer">{home.website || "Website not available"}</a></p>
-            <p>Hours: {home.hours.length ? home.hours.join(', ') : "No hours available"}</p>
+            <p>Hours: {home.hours || "No hours available"}</p>
           </div>
         ))}
       </div>
