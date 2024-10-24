@@ -1,11 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
-from application import db, NursingHomeModel  # Import the database and model
+from models import db, NursingHomeModel  # Import the database and model
 from sqlalchemy.exc import IntegrityError
-from application import db  # Import the db object from your app
-from application import NursingHomeModel  # Import the NursingHomeModel
-
 
 load_dotenv()
 
