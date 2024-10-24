@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
-from googlemaps import get_nursing_homes_from_all_cities
+#from googlemaps import get_nursing_homes_from_all_cities
 from models import HealthCenterModel, NursingHomeModel, EntertainmentModel 
 
 
@@ -19,10 +19,11 @@ CORS(app)
 def home():
     return '<h1>SeniorUplift API</h1>'
 
+'''
 @app.route('/api/nursinghomes/google', methods=['GET'])
 def fetch_nursing_homes_google():
     try:
-        nursing_homes = get_nursing_homes_from_all_cities() 
+        #nursing_homes = get_nursing_homes_from_all_cities() 
         if nursing_homes:
             return {'nursing_homes': nursing_homes}, 200  
         else:
@@ -30,7 +31,7 @@ def fetch_nursing_homes_google():
     except Exception as e:
         print(f"Error occurred: {e}")
         return {'message': 'An error occurred while fetching data'}, 500
-
+'''
 
 #validate input
 #for post/patch requests, may not need
@@ -49,6 +50,17 @@ hcFields = {
     'ratings':fields.Float,
     'hours':fields.String,
     'phone':fields.String,
+}
+
+nhFields = {
+    'id':fields.Integer,
+    'name':fields.String,
+    'address':fields.String,
+    'ratings':fields.Float,
+    'hours':fields.String,
+    'phone':fields.String,
+    'website':fields.String,
+    'image_url':fields.String,
 }
 
 class HealthCenters(Resource):
@@ -92,7 +104,7 @@ class HealthCenter(Resource):
 class NursingHomes(Resource):
 
     #get all health centers
-    @marshal_with(hcFields)
+    @marshal_with(nhFields)
     def get(self):
         nhs = NursingHomeModel.query.all()
         return nhs
@@ -100,7 +112,7 @@ class NursingHomes(Resource):
 class NursingHome(Resource):
 
     #get single health center
-    @marshal_with(hcFields)
+    @marshal_with(nhFields)
     def get(self, id):
         nh = NursingHomeModel.query.filter_by(id=id).first()
         if not nh:
@@ -136,4 +148,6 @@ api.add_resource(Entertainment, '/api/entertainment/<int:id>')
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
