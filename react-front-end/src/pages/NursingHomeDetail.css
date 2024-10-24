@@ -1,0 +1,23 @@
+.nursing-home-detail-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .nursing-home-detail-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .nursing-home-detail-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .nursing-home-description {
+    font-size: 18px;
+    color: #555;
+  }
+  

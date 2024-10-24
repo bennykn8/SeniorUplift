@@ -13,20 +13,6 @@ from models import api, db, app
 def home():
     return '<h1>SeniorUplift API</h1>'
 
-'''
-@app.route('/api/nursinghomes/google', methods=['GET'])
-def fetch_nursing_homes_google():
-    try:
-        #nursing_homes = get_nursing_homes_from_all_cities() 
-        if nursing_homes:
-            return {'nursing_homes': nursing_homes}, 200  
-        else:
-            return {'message': 'No nursing homes found'}, 404
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        return {'message': 'An error occurred while fetching data'}, 500
-'''
-
 #validate input
 #for post/patch requests, may not need
 healthcenter_args = reqparse.RequestParser()

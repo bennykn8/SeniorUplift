@@ -18,6 +18,7 @@ import AboutPage from './pages/AboutPage';
 import NursingHomes from './pages/NursingHomes';
 import Healthcare from './pages/Healthcare';
 import Entertainment from './pages/Entertainment';
+import NursingHomeDetail from './pages/NursingHomeDetail';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<FrontPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/nursing-homes" element={<NursingHomes />} />
+          <Route path="/nursinghomes/:id" element={<NursingHomeDetail />} />
           <Route path="/healthcare" element={<Healthcare />} />
           <Route path="/entertainment" element={<Entertainment />} />
           <Route path="*" element={<Navigate replace to="/" />} />
