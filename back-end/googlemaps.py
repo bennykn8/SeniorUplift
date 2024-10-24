@@ -38,19 +38,18 @@ def get_nursing_homes_in_city(city):
                     else:
                         image_url = get_image_url(details.get('name'))
 
-                    # Store the nursing home in the database
                     new_nursing_home = NursingHomeModel(
                         name=details.get('name'),
                         address=details.get('formatted_address'),
                         rating=details.get('rating'),
                         website=details.get('website'),
                         phone=details.get('formatted_phone_number'),
-                        hours=", ".join(details.get('opening_hours', {}).get('weekday_text', [])),  # Convert list to string
+                        hours=", ".join(details.get('opening_hours', {}).get('weekday_text', [])),
                         image_url=image_url
                     )
 
-                    db.session.add(new_nursing_home)  # Add the new entry
-                    db.session.commit()  # Commit the changes to the database
+                    db.session.add(new_nursing_home) 
+                    db.session.commit() 
 
                     results.append(new_nursing_home)
 
@@ -101,7 +100,7 @@ def get_image_url(query):
 
 # Function to get nursing homes from all cities
 def get_nursing_homes_from_all_cities():
-    with app.app_context():  # Ensure that database operations are performed within an app context
+    with app.app_context(): 
         for city in TEXAS_CITIES:
             get_nursing_homes_in_city(city)
 
