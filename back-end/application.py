@@ -15,7 +15,7 @@ CORS(app)
 
 
 #api home endpoint
-@app.route('/api/')
+@app.route('/')
 def home():
     return '<h1>SeniorUplift API</h1>'
 
