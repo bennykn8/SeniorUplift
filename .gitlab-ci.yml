@@ -9,7 +9,7 @@ jest:
   stage: jest-tests
   image: node:latest
   script:
-    - cd frontend
+    - cd react-front-end
     - npm install
     - npm test
 
