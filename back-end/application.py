@@ -4,14 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 #from googlemaps import get_nursing_homes_from_all_cities
 from models import HealthCenterModel, NursingHomeModel, EntertainmentModel 
+from models import api, db, app
 
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://admin:%y9Ep^9i^$@backend-db.c9me2cwiud0l.us-east-2.rds.amazonaws.com:3306"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
-api = Api(app)
-CORS(app)
 
 
 #api home endpoint
@@ -144,8 +138,6 @@ api.add_resource(NursingHomes, '/api/nursinghomes/')
 api.add_resource(NursingHome, '/api/nursinghome/<int:id>')
 api.add_resource(Entertainments, '/api/entertaiments/')
 api.add_resource(Entertainment, '/api/entertainment/<int:id>')
-
-
 
 if __name__ == '__main__':
     with app.app_context():

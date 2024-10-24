@@ -1,9 +1,9 @@
 import requests
 import os
 from dotenv import load_dotenv
-from models import db, NursingHomeModel  # Import the database and model
-from sqlalchemy.exc import IntegrityError
+from models import db, NursingHomeModel
 from application import app
+from sqlalchemy.exc import IntegrityError
 
 load_dotenv()
 
@@ -11,15 +11,8 @@ Google_Maps_API = os.getenv('GOOGLE_MAPS_API_KEY')
 Google_Custom_Search_API_Key = os.getenv('GOOGLE_IMAGE_API_KEY')
 Google_CSE_ID = os.getenv('GOOGLE_CSE_ID')
 
+TEXAS_CITIES = ["laredo"]
 
-# TEXAS_CITIES = ["houston", "san-antonio", "dallas", "austin", "fort-worth", "el-paso", "arlington", 
-#                       "corpus-christi", "plano", "lubbock", "laredo", "irving", "garland", "frisco", "amarillo", "grand-prairie", 
-#                       "mckinney", "brownsville", "killeen", "mcallen", "pasadena", "mesquite-city", "denton", "waco", 
-#                       "midland", "carrollton", "abilene"
-# ]
-
-TEXAS_CITIES = ["laredo"
-]
 # Function to get nursing homes in a city
 def get_nursing_homes_in_city(city):
     url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
@@ -106,31 +99,11 @@ def get_image_url(query):
         print(f"Error fetching image: {response.status_code} - {response.text}")
     return None
 
-# Function to store data in the database
-def store_in_database(data):
-    try:
-        nursing_home = NursingHomeModel(
-            name=data['name'],
-            address=data['address'],
-            rating=data['rating'],
-            website=data['website'],
-            phone=data['phone'],
-            hours=data['hours'],
-            image_url=data['image_url']
-        )
-
-        db.session.add(nursing_home)
-        db.session.commit()
-        print(f"Stored: {data['name']} in the database.")
-    except IntegrityError as e:
-        db.session.rollback() 
-        print(f"Error storing {data['name']}: {e}")
-
 # Function to get nursing homes from all cities
 def get_nursing_homes_from_all_cities():
-    for city in TEXAS_CITIES:
-        get_nursing_homes_in_city(city)
+    with app.app_context():  # Ensure that database operations are performed within an app context
+        for city in TEXAS_CITIES:
+            get_nursing_homes_in_city(city)
 
 if __name__ == '__main__':
-    with app.app_context() :
-        get_nursing_homes_from_all_cities()
+    get_nursing_homes_from_all_cities()

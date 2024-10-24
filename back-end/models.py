@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://admin:%y9Ep^9i^$@backend-db.c9me2cwiud0l.us-east-2.rds.amazonaws.com:3306"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://admin:%y9Ep^9i^$@be-db.c9me2cwiud0l.us-east-2.rds.amazonaws.com:3306/senioruplift_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 api = Api(app)
