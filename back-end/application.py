@@ -1,5 +1,5 @@
 from flask import Flask 
-from flask_cors import CORS  # Import CORS
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 from googlemaps import get_nursing_homes_from_all_cities

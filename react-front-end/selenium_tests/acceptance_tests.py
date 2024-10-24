@@ -5,7 +5,7 @@ import unittest
 import time
 
 
-url = "http://localhost:3000/"
+url = "https://senioruplift.me/"
 class frontend_acceptance_tests(unittest.TestCase):
 
     def setUp(self):

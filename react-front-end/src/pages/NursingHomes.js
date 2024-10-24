@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './NursingHomes.css';
+import './NursingHomes.css';  
 import axios from 'axios';
 
 const NursingHomes = () => {
@@ -12,7 +12,6 @@ const NursingHomes = () => {
 
   const fetchNursingHomes = async () => {
     try {
-      setLoading(true);
       // Fetch data from the backend route that queries the database
       const response = await axios.get('http://localhost:5000/api/nursinghomes'); 
       if (response.data.nursing_homes) {
