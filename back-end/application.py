@@ -43,6 +43,16 @@ nhFields = {
     'image_url':fields.String,
 }
 
+entFields = {
+    'id':fields.Integer,
+    'title':fields.String,          
+    'city':fields.String,           
+    'cost':fields.String,            
+    'category':fields.String,     
+    'location':fields.String,   
+    'event_time':fields.String, 
+    'image_url':fields.String  
+}
 class HealthCenters(Resource):
 
     #get all health centers
@@ -100,17 +110,15 @@ class NursingHome(Resource):
         return nh
     
 class Entertainments(Resource):
-
-    #get all health centers
-    @marshal_with(hcFields)
+    # Get all entertainment centers
+    @marshal_with(entFields)
     def get(self):
         entertains = EntertainmentModel.query.all()
         return entertains
-    
-class Entertainment(Resource):
 
-    #get single health center
-    @marshal_with(hcFields)
+class Entertainment(Resource):
+    # Get single entertainment center by ID
+    @marshal_with(entFields)
     def get(self, id):
         entertain = EntertainmentModel.query.filter_by(id=id).first()
         if not entertain:
@@ -122,7 +130,7 @@ api.add_resource(HealthCenters, '/api/healthcenters/')
 api.add_resource(HealthCenter, '/api/healthcenter/<int:id>')
 api.add_resource(NursingHomes, '/api/nursinghomes/')
 api.add_resource(NursingHome, '/api/nursinghome/<int:id>')
-api.add_resource(Entertainments, '/api/entertaiments/')
+api.add_resource(Entertainments, '/api/entertainments/')
 api.add_resource(Entertainment, '/api/entertainment/<int:id>')
 
 if __name__ == '__main__':

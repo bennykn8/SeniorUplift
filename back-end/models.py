@@ -37,14 +37,16 @@ class NursingHomeModel(db.Model):
         return f"Nursing Home( Name: {self.name}, Address: {self.address}, Rating: {self.rating}, Hours: {self.hours}, Phone: {self.phone}, Website: {self.website}, Image URL: {self.image_url})"
 
 
-#describes entertainment model
-class EntertainmentModel (db.Model) :
+# describes entertainment model
+class EntertainmentModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), unique=True, nullable=False)
-    city = db.Column(db.String(255), unique=True, nullable=False)
-    ratings = db.Column(db.Float)
-    hours = db.Column(db.String(255), unique=True, nullable=False)
-    phone = db.Column(db.String(255), unique=True, nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(255), nullable=False)
+    cost = db.Column(db.String(255), nullable=True)
+    category = db.Column(db.String(255), nullable=True)  
+    location = db.Column(db.String(1024), nullable=True) 
+    event_time = db.Column(db.String(255), nullable=True) 
+    image_url = db.Column(db.String(1024), nullable=True)  
 
-    def __repr__ (self):
-        return f"Entertainment( Name: {self.name}, City: {self.city}, Ratings: {self.ratings}, Hours: {self.hours}, Phone Number: {self.phone})"
+    def __repr__(self):
+        return f"Entertainment( Title: {self.title}, City: {self.city}, Cost: {self.cost}, Category: {self.category}, Location: {self.location}, Time: {self.event_time}, Image URL: {self.image_url})"
