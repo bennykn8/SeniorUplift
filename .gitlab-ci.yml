@@ -27,7 +27,7 @@ backend:
   script:
     - cd back-end/tests
     - pip install requests
-    - python test.py
+    - python api_tests.py
 
 postman:
   stage: postman-tests
