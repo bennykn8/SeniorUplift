@@ -5,7 +5,6 @@ import './HealthcareDetail.css';
 
 const HealthcareDetail = () => {
   const { state: center } = useLocation();
-  const [healthcareData, setHealthcareData] = useState([]);
   const [nearbyNursingHomes, setNearbyNursingHomes] = useState([]);
   const [nearbyEntertainment, setNearbyEntertainment] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,8 +15,6 @@ const HealthcareDetail = () => {
     try {
       const response = await axios.get('https://api.senioruplift.me/api/healthcenters/');
       if (response.data) {
-        setHealthcareData(response.data);
-        // Find the current center from the fetched data
         const currentCenter = response.data.find(hc => hc.id === center.id);
         if (currentCenter) {
           setNearbyNursingHomes(currentCenter.nursinghome || []);

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const EntertainmentDetail = () => {
   const { state: entertainment } = useLocation();
-  const [entertainmentData, setEntertainmentData] = useState([]);
   const [hospitals, setHospitals] = useState([]);
   const [nursinghomes, setNursinghomes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,8 +15,6 @@ const EntertainmentDetail = () => {
     try {
       const response = await axios.get('https://api.senioruplift.me/api/entertainments/');
       if (response.data) {
-        setEntertainmentData(response.data);
-        // Assuming entertainment ID is available and used to match details
         const currentEntertainment = response.data.find(e => e.id === entertainment.id);
         if (currentEntertainment) {
           setHospitals(currentEntertainment.healthcenter || []);
@@ -33,7 +30,7 @@ const EntertainmentDetail = () => {
 
   useEffect(() => {
     if (!entertainment) {
-      navigate('/notfound'); // Redirect or handle the case where no entertainment is provided
+      navigate('/notfound');
     } else {
       fetchEntertainment();
     }

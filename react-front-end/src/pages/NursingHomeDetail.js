@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const NursingHomeDetail = () => {
   const { state: home } = useLocation();
-  const [nursingHomesData, setNursingHomesData] = useState([]);
   const [nearbyHospital, setHospitals] = useState([]);
   const [nearbyEntertainment, setEntertainment] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +15,6 @@ const NursingHomeDetail = () => {
     try {
       const response = await axios.get('https://api.senioruplift.me/api/nursinghomes/');
       if (response.data) {
-        setNursingHomesData(response.data);
         const currentNursingHome = response.data.find(e => e.id === home.id);
         if (currentNursingHome) {
           setHospitals(currentNursingHome.healthcenter || []);
@@ -32,7 +30,7 @@ const NursingHomeDetail = () => {
 
   useEffect(() => {
     if (!home) {
-      navigate('/notfound'); // Redirect or handle the case where no entertainment is provided
+      navigate('/notfound'); 
     } else {
       fetchNursingHomes();
     }
