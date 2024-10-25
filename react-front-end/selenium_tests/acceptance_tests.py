@@ -63,7 +63,7 @@ class frontend_acceptance_tests(unittest.TestCase):
         hero_title = self.driver.find_element(By.XPATH, "//h1[contains(text(), 'Welcome to SeniorUpLift')]")
         hero_description = self.driver.find_element(By.XPATH, "//p[contains(text(), 'Helping the elderly in Texas find nearby healthcare centers')]")
         self.assertEqual(hero_title.text, "Welcome to SeniorUpLift")
-        self.assertEqual(hero_description.text, "Helping the elderly in Texas find nearby healthcare centers, nursing homes, and entertainment options with ratings and proximity for easy access to services.")
+        self.assertEqual(hero_description.text, "Helping the elderly in Texas find nearby healthcare centers, nursing homes, and entertainment options with ratings and proximity for easy access to services.") 
 
     
     def test_8(self):
