@@ -1,40 +1,54 @@
 .entertainment-detail-container {
-    padding: 20px;
-    text-align: center;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+.entertainment-detail-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.entertainment-detail-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.entertainment-description {
+  font-size: 18px;
+  color: #555;
+}
+
+.nearby-locations h2 {
+  font-size: 1.5em;
+  margin-top: 30px;
+}
+
+.nearby-locations ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nearby-locations li {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .entertainment-detail-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .entertainment-detail-box {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-  }
-  
-  .entertainment-description {
-    font-size: 18px;
-    color: #555;
-  }
-  
-  .nearby-locations h2 {
-    font-size: 1.5em;
-    margin-top: 30px;
-  }
-  
-  .nearby-locations ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .nearby-locations li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-  }
-  
+}
