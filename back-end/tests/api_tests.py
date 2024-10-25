@@ -31,10 +31,10 @@ class TestAPIEndpoints(unittest.TestCase):
         self.fetch_raw_results("nursinghome/1")
 
     def test_4_entertainments(self):
-        self.fetch_raw_results("entertaiments/")
+        self.fetch_raw_results("entertainments/")
 
     def test_5_entertainment_by_id(self):
-        self.fetch_raw_results("entertainment/1", expected_status=500)
+        self.fetch_raw_results("entertainment/1", expected_status=200)
 
     def test_6_non_existent_health_center(self):
         try:
