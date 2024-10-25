@@ -71,10 +71,11 @@ def transfer_csv_to_db(filename='events_data.csv'):
 
 # Function to loop through a list of cities, scrape data, and save to CSV + DB
 def scrape_event_for_cities():
-    texas_cities = ["houston", "san-antonio", "dallas", "austin", "fort-worth", "el-paso", "arlington", 
-                      "corpus-christi", "plano", "lubbock", "laredo", "irving", "garland", "frisco", "amarillo", "grand-prairie", 
-                      "mckinney", "brownsville", "killeen", "mcallen", "pasadena", "mesquite-city", "denton", "waco", 
-                      "midland", "carrollton", "abilene"]
+    texas_cities = ['abilene', 'amarillo', 'arlington', 'austin', 'brownsville', 'carrollton', 
+                    'corpus-christi', 'dallas', 'denton', 'el-paso', 'fort-worth', 'frisco', 
+                    'garland', 'grand-prairie', 'houston', 'irving', 'killeen', 'laredo', 
+                    'lubbock', 'mcallen', 'mckinney', 'mesquite-city', 'midland', 'pasadena', 
+                    'plano', 'san-antonio', 'waco']
     
     url_prefix = "https://www.eventbrite.com/d/tx--"
     url_suffix = "/senior-events/"
