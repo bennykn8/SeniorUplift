@@ -34,6 +34,7 @@ hcFields = {
     'discharges': fields.Integer,
     'patient_days': fields.Integer,
     'revenue': fields.Integer,
+    'image_url': fields.String,
     'nursinghome': fields.List(fields.Nested({
         'id': fields.Integer,
         'name': fields.String,
