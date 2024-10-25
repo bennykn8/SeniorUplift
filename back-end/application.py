@@ -19,12 +19,12 @@ def get_table_names():
 
 #validate input
 #for post/patch requests, may not need
-healthcenter_args = reqparse.RequestParser()
-healthcenter_args.add_argument('name', type=str, required=True, help="must have name")
-healthcenter_args.add_argument('city', type=str, required=True, help="must have city")
-healthcenter_args.add_argument('ratings', type=float, required=True, help="must have rating")
-healthcenter_args.add_argument('hours', type=str, required=True, help="must have hours")
-healthcenter_args.add_argument('phone', type=str, required=True, help="must have phone")
+# healthcenter_args = reqparse.RequestParser()
+# healthcenter_args.add_argument('name', type=str, required=True, help="must have name")
+# healthcenter_args.add_argument('city', type=str, required=True, help="must have city")
+# healthcenter_args.add_argument('ratings', type=float, required=True, help="must have rating")
+# healthcenter_args.add_argument('hours', type=str, required=True, help="must have hours")
+# healthcenter_args.add_argument('phone', type=str, required=True, help="must have phone")
 
 hcFields = {
     'id': fields.Integer,
