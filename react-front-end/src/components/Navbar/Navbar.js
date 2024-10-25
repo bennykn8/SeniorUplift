@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaHospitalUser } from "react-icons/fa";
+
 import './Navbar.css';
 
 const Navbar = () => {
@@ -12,6 +14,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-info">
       <div className="container-fluid">
+        <FaHospitalUser className='hospital-logo' />
         <NavLink className="navbar-brand text-dark" to="/">
           SeniorUpLift
         </NavLink>
