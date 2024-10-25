@@ -19,6 +19,9 @@ selenium:
   services:
     - selenium/standalone-chrome:latest
   script:
+    - apt-get update && apt-get install -y wget unzip
+    - wget -N https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+    - unzip chromedriver_linux64.zip -d /usr/local/bin/
     - cd react-front-end/selenium_tests
     - pip install selenium
     - python acceptance_tests.py
