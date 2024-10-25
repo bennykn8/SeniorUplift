@@ -92,9 +92,5 @@ class frontend_acceptance_tests(unittest.TestCase):
         self.assertEqual(entertainment_section.text, "Entertainment", "Entertainment text does not match")
 
 
-        
-
-
-
 if __name__ == "__main__":
     unittest.main()

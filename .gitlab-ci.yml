@@ -20,8 +20,7 @@ selenium:
     - selenium/standalone-chrome:latest
   script:
     - pip install selenium
-    - python react-front-end/selenium_tests/acceptance_tests.py #added acceptance tests
-
+    - cd react-front-end/selenium_tests
 backend:
   stage: backend-tests
   image: python:latest
