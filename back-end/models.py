@@ -42,21 +42,21 @@ NursingHomes_Entertainment = Table('nursingHomes_entertainment', db.Model.metada
 class HealthCenterModel (db.Model) :
     __tablename__ = 'health_center_model'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), unique=True, nullable=False)
-    city = db.Column(db.String(255), unique=True, nullable=False)
-    ratings = db.Column(db.Float)
-    hours = db.Column(db.String(255), unique=True, nullable=False)
-    phone = db.Column(db.String(255), unique=True, nullable=False)
-
     # id = db.Column(db.Integer, primary_key=True)
-    # name = db.Column(db.String(255), nullable=False)
-    # city = db.Column(db.String(255), nullable=False)
-    # beds = db.Column(db.Integer, nullable=True)
-    # discharges = db.Column(db.Integer, nullable=True)
-    # patient_days = db.Column(db.Integer, nullable=True)
-    # revenue = db.Column(db.Integer, nullable=True)
-    # image_url = db.Column(db.String(1024), nullable=True)
+    # name = db.Column(db.String(255), unique=True, nullable=False)
+    # city = db.Column(db.String(255), unique=True, nullable=False)
+    # ratings = db.Column(db.Float)
+    # hours = db.Column(db.String(255), unique=True, nullable=False)
+    # phone = db.Column(db.String(255), unique=True, nullable=False)
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(255), nullable=False)
+    beds = db.Column(db.Integer, nullable=True)
+    discharges = db.Column(db.Integer, nullable=True)
+    patient_days = db.Column(db.Integer, nullable=True)
+    revenue = db.Column(db.Integer, nullable=True)
+    image_url = db.Column(db.String(1024), nullable=True)
 
     nursinghome = relationship(
         "NursingHomeModel",

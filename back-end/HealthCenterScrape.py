@@ -8,6 +8,8 @@ import time
 import pandas as pd
 from google_images_search import GoogleImagesSearch
 from pydantic_settings import BaseSettings
+from models import db, HealthCenterModel
+from application import app
 
 # Set up your Google API credentials
 class Settings(BaseSettings):
@@ -22,6 +24,43 @@ print("HERE")
 print(settings.google_api)  # Should not be None
 print(settings.google_crx) 
 search = GoogleImagesSearch(settings.google_api, settings.google_crx)
+
+filename = "hospitals_data_cleaned.csv"
+data = pd.read_csv(filename)
+
+# add to database from csv
+def insert_health_centers(data):
+    with app.app_context():
+        for _, row in data.iterrows():
+            name = row['Hospital Name']
+            city = row['City']
+            beds = row['Staffed Beds'] if 'Staffed Beds' in row else None
+            discharges = row['Total Discharges'] if 'Total Discharges' in row else None
+            patient_days = row['Patient Days'] if 'Patient Days' in row else None
+            revenue = row['Gross Patient Revenue'] if 'Gross Patient Revenue' in row else None
+            image_url = row['Image URL'] if 'Image URL' in row else None
+            existing_entry = HealthCenterModel.query.filter_by(name=name, city=city).first()
+            if existing_entry:
+                print(f"Entry for {name} in {city} already exists. Skipping...")
+                continue
+
+            # Create a new HealthCenterModel entry
+            health_center = HealthCenterModel(
+                name=name,
+                city=city,
+                beds=beds,
+                discharges=discharges,
+                patient_days=patient_days,
+                revenue=revenue,
+                image_url=image_url
+            )
+
+            # Add and commit the session
+            db.session.add(health_center)
+        
+        db.session.commit()
+        print("Data successfully inserted into the HealthCenterModel table.")
+
 
 # Function to set up WebDriver and fetch the hospital page
 def getDriver():
@@ -92,4 +131,5 @@ def main():
 
 # Run the main function
 if __name__ == '__main__':
-    main()
+    insert_health_centers(data)
+    # main()
