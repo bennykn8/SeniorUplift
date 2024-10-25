@@ -3,7 +3,7 @@ import requests
 
 class TestAPIEndpoints(unittest.TestCase):
 
-    ### Helper Methods ###
+    ### Helper Methods ### 
 
     # Fetches a response from the backend (as a raw string) and checks the
     # status code, given the API endpoint and an expected status
