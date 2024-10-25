@@ -1,22 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './EntertainmentDetail.css'; 
+import axios from 'axios';
 
 const EntertainmentDetail = () => {
-  const { state: entertainment } = useLocation();  
-  const [hospitals, setHospitals] = useState(entertainment.healthcenter);
-  const [nursinghomes, setNursinghomes] = useState(entertainment.nursinghome);
-  const [loading, setLoading] = useState(false);
+  const { state: entertainment } = useLocation();
+  const [entertainmentData, setEntertainmentData] = useState([]);
+  const [hospitals, setHospitals] = useState([]);
+  const [nursinghomes, setNursinghomes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  console.log(entertainment)
+  const fetchEntertainment = async () => {
+    try {
+      const response = await axios.get('https://api.senioruplift.me/api/entertainments/');
+      if (response.data) {
+        setEntertainmentData(response.data);
+        // Assuming entertainment ID is available and used to match details
+        const currentEntertainment = response.data.find(e => e.id === entertainment.id);
+        if (currentEntertainment) {
+          setHospitals(currentEntertainment.healthcenter || []);
+          setNursinghomes(currentEntertainment.nursinghome || []);
+        }
+      }
+    } catch (err) {
+      setError('Error fetching data, please try again later');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if (!entertainment) {
-    return <div>No entertainment details available.</div>;
-  }
+  useEffect(() => {
+    if (!entertainment) {
+      navigate('/notfound'); // Redirect or handle the case where no entertainment is provided
+    } else {
+      fetchEntertainment();
+    }
+  }, [entertainment, navigate]);
 
-  if (loading) {
+  if (!entertainment || loading) {
     return <div>Loading entertainment details and nearby locations...</div>;
   }
 
@@ -37,33 +60,23 @@ const EntertainmentDetail = () => {
         <p><strong>Time:</strong> {entertainment.event_time || "Time not available"}</p>
       </div>
 
-      <div className="entertainment-description">
-        <p>
-          {entertainment.title} is located at {entertainment.city}. This venue offers entertainment in the category of {entertainment.category || "various activities"}. It is available at {entertainment.event_time || "unspecified times"}. The venue is at {entertainment.location || "a location not specified"}. The event has a {entertainment.cost || "varied"} cost structure.
-        </p>
-      </div>
-
       {/* Display nearby hospitals */}
       <div className="nearby-locations">
         <h2>Nearby Hospitals</h2>
         {hospitals.length > 0 ? (
           <ul>
             {hospitals.slice(0, 3).map((hospital, index) => (
-                <li
-                key={index}
-                onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
-                style={{ cursor: 'pointer' }}
-              >
-                <strong>{hospital.name}</strong><br />
-                {hospital.address}<br />
-                Rating: {hospital.rating ? `${hospital.rating}/5` : "No rating available"}<br />
-                Phone: {hospital.phone || "Phone not available"}
-              </li>
+                <li key={index}
+                    onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
+                    style={{ cursor: 'pointer' }}>
+                  <strong>{hospital.name}</strong><br />
+                  {hospital.address}<br />
+                  Rating: {hospital.rating ? `${hospital.rating}/5` : "No rating available"}<br />
+                  Phone: {hospital.phone || "Phone not available"}
+                </li>
             ))}
           </ul>
-        ) : (
-          <p>No nearby hospitals found.</p>
-        )}
+        ) : <p>No nearby hospitals found.</p>}
       </div>
 
       {/* Display nearby nursing homes */}
@@ -71,24 +84,20 @@ const EntertainmentDetail = () => {
         <h2>Nearby Nursing Homes</h2>
         {nursinghomes.length > 0 ? (
           <ul>
-          {nursinghomes.slice(0, 3).map((nursinghome, index) => (
-              <li
-                key={index}
-                onClick={() => navigate(`/nursinghomes/${nursinghome.id}`, { state: nursinghome })}
-                style={{ cursor: 'pointer' }}
-              >
-                <strong>{nursinghome.name}</strong><br />
-                {nursinghome.address}<br />
-                Rating: {nursinghome.rating ? `${nursinghome.rating}/5` : "No rating available"}<br />
-                Phone: {nursinghome.phone || "Phone not available"}
-              </li>
-          ))}
+            {nursinghomes.slice(0, 3).map((nursinghome, index) => (
+                <li key={index}
+                    onClick={() => navigate(`/nursinghomes/${nursinghome.id}`, { state: nursinghome })}
+                    style={{ cursor: 'pointer' }}>
+                  <strong>{nursinghome.name}</strong><br />
+                  {nursinghome.address}<br />
+                  Rating: {nursinghome.rating ? `${nursinghome.rating}/5` : "No rating available"}<br />
+                  Phone: {nursinghome.phone || "Phone not available"}
+                </li>
+            ))}
           </ul>
-        ) : (
-          <p>No nearby hospitals found.</p>
-        )}
+        ) : <p>No nearby nursing homes found.</p>}
       </div>
-      
+
     </div>
   );
 };
