@@ -88,6 +88,7 @@ const Healthcare = () => {
             <p>Beds: {center.beds || "N/A"}</p>
             <p>Discharges: {center.discharges || "N/A"}</p>
             <p>Patient Days: {center.patient_days || "N/A"}</p>
+            <p>Revenue: {center.revenue ? `$${center.revenue.toLocaleString()}` : "N/A"}</p>
           </div>
         ))}
       </div>
