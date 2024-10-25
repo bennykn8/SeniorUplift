@@ -36,6 +36,7 @@ const NursingHomeDetail = () => {
       navigate('/notfound'); // Redirect or handle the case where no entertainment is provided
     } else {
       fetchNursingHomes();
+      console.log(nearbyHospital)
     }
   }, [home, navigate]);
 
@@ -80,9 +81,8 @@ const NursingHomeDetail = () => {
                     onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
                     style={{ cursor: 'pointer' }}>
                   <strong>{hospital.name}</strong><br />
-                  {hospital.address}<br />
-                  Rating: {hospital.rating ? `${hospital.rating}/5` : "No rating available"}<br />
-                  Phone: {hospital.phone || "Phone not available"}
+                  City: {hospital.city || "City not available"}<br />
+                  Discharges: {hospital.discharges || "Discharges not available"}
                 </li>
             ))}
           </ul>

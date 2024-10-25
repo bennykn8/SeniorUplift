@@ -67,12 +67,11 @@ const EntertainmentDetail = () => {
           <ul>
             {hospitals.slice(0, 3).map((hospital, index) => (
                 <li key={index}
-                    onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
-                    style={{ cursor: 'pointer' }}>
+                onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
+                style={{ cursor: 'pointer' }}>
                   <strong>{hospital.name}</strong><br />
-                  {hospital.address}<br />
-                  Rating: {hospital.rating ? `${hospital.rating}/5` : "No rating available"}<br />
-                  Phone: {hospital.phone || "Phone not available"}
+                  City: {hospital.city || "City not available"}<br />
+                  Discharges: {hospital.discharges || "Discharges not available"}
                 </li>
             ))}
           </ul>
