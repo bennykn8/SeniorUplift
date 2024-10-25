@@ -1,9 +1,8 @@
-
 .nursing-homes-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;  
+  text-align: center;
 }
 
 
@@ -17,15 +16,16 @@
   width: 230px;
   display: inline-block;
   vertical-align: top;
-  height: 370px;  
-  overflow: hidden; 
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  
+  height: 370px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+
+  transition: transform 0.3s;
 }
 
 .nursing-home-item:hover {
-  overflow-y: auto;  
-  padding-right: 15px;  
+  transform: scale(1.05);
 }
 
 .nursing-home-image {
@@ -43,15 +43,15 @@
   font-weight: bold;
   margin: 5px 0;
   height: auto;
-  white-space: normal; 
+  white-space: normal;
   overflow: hidden;
 }
 
 
 .nursing-home-item p {
   margin: 5px 0;
-  font-size: 0.9em;  
-  line-height: 1.4;  
+  font-size: 0.9em;
+  line-height: 1.4;
 }
 
 
@@ -63,7 +63,7 @@
   text-overflow: ellipsis;
   color: #007bff;
   text-decoration: none;
-  font-size: 0.85em; 
+  font-size: 0.85em;
 }
 
 .nursing-home-item a:hover {
@@ -71,7 +71,7 @@
 }
 
 .nursing-home-item:hover {
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .pagination-controls {
@@ -110,7 +110,7 @@
 
 @media (max-width: 768px) {
   .nursing-home-item {
-    width: 100%;  
+    width: 100%;
     margin: 10px 0;
     height: auto;
   }
