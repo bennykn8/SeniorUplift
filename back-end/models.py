@@ -49,15 +49,24 @@ class HealthCenterModel (db.Model) :
     hours = db.Column(db.String(255), unique=True, nullable=False)
     phone = db.Column(db.String(255), unique=True, nullable=False)
 
+    # id = db.Column(db.Integer, primary_key=True)
+    # name = db.Column(db.String(255), nullable=False)
+    # city = db.Column(db.String(255), nullable=False)
+    # beds = db.Column(db.Integer, nullable=True)
+    # discharges = db.Column(db.Integer, nullable=True)
+    # patient_days = db.Column(db.Integer, nullable=True)
+    # revenue = db.Column(db.Integer, nullable=True)
+    # image_url = db.Column(db.String(1024), nullable=True)
+
     nursinghome = relationship(
         "NursingHomeModel",
         secondary=HealthCenter_NursingHomes,
-        back_populates="healthcenter"
+        lazy="select"
     )
     entertainment = relationship(
         "EntertainmentModel",
         secondary=HealthCenter_Entertainment,
-        back_populates="healthcenter"
+        lazy="select"
     )
 
     def __repr__ (self):
@@ -79,13 +88,15 @@ class NursingHomeModel(db.Model):
     healthcenter = relationship(
         "HealthCenterModel",
         secondary=HealthCenter_NursingHomes,
-        back_populates="nursinghome"
+        lazy="select"
     )
     entertainment = relationship(
         "EntertainmentModel",
         secondary=NursingHomes_Entertainment,
-        back_populates="nursinghome"
+        lazy="select"
     )
+    # entertainment_id = db.Column(db.Integer, db.ForeignKey('entertainment_model.id'))
+    # entertainment = relationship("EntertainmentModel", foreign_keys=[entertainment_id], uselist=False)
 
     def __repr__(self):
         return f"Nursing Home( Name: {self.name}, Address: {self.address}, Rating: {self.rating}, Hours: {self.hours}, Phone: {self.phone}, Website: {self.website}, Image URL: {self.image_url})"
@@ -107,13 +118,15 @@ class EntertainmentModel(db.Model):
     healthcenter = relationship(
         "HealthCenterModel",
         secondary=HealthCenter_Entertainment,
-        back_populates="entertainment"
+        lazy="select"
     )
     nursinghome = relationship(
         "NursingHomeModel",
         secondary=NursingHomes_Entertainment,
-        back_populates="entertainment"
-    )  
+        lazy="select"
+    )
+    # nursinghome_id = db.Column(db.Integer, db.ForeignKey('nursing_home_model.id'))
+    # nursinghome = relationship("NursingHomeModel", foreign_keys=[nursinghome_id], uselist=False)
 
     def __repr__(self):
         return f"Entertainment( Title: {self.title}, City: {self.city}, Cost: {self.cost}, Category: {self.category}, Location: {self.location}, Time: {self.event_time}, Image URL: {self.image_url})"

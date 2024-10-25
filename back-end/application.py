@@ -26,41 +26,86 @@ healthcenter_args.add_argument('ratings', type=float, required=True, help="must 
 healthcenter_args.add_argument('hours', type=str, required=True, help="must have hours")
 healthcenter_args.add_argument('phone', type=str, required=True, help="must have phone")
 
-#used to format json output
+# hcFields = {
+#     'id': fields.Integer,
+#     'name': fields.String,
+#     'city': fields.String,
+#     'beds': fields.Integer,
+#     'discharges': fields.Integer,
+#     'patient_days': fields.Integer,
+#     'revenue': fields.Integer,
+#     'nursinghome': fields.List(fields.Nested({
+#         'id': fields.Integer,
+#         'name': fields.String,
+#         'address': fields.String,
+#     })),
+#     'entertainment': fields.List(fields.Nested({
+#         'id': fields.Integer,
+#         'title': fields.String,
+#         'city': fields.String,
+#     }))
+# }
+
 hcFields = {
-    'id':fields.Integer,
-    'name':fields.String,
-    'city':fields.String,
-    'ratings':fields.Float,
-    'hours':fields.String,
-    'phone':fields.String,
+    'id': fields.Integer,
+    'name': fields.String,
+    'city': fields.String,
+    'ratings': fields.Float,
+    'hours': fields.String,
+    'phone': fields.String,
+    'nursinghome': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'name': fields.String,
+        'address': fields.String,
+    })),
+    'entertainment': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'title': fields.String,
+        'city': fields.String,
+    }))
 }
 
 nhFields = {
-    'id':fields.Integer,
-    'name':fields.String,
-    'address':fields.String,
-    'ratings':fields.Float,
-    'hours':fields.String,
-    'phone':fields.String,
-    'website':fields.String,
-    'image_url':fields.String,
-    'healthcenter': fields.List(fields.Nested(hcFields)),
-    #'entertainment': fields.List(fields.Nested(entFields))
+    'id': fields.Integer,
+    'name': fields.String,
+    'address': fields.String,
+    'ratings': fields.Float,
+    'hours': fields.String,
+    'phone': fields.String,
+    'website': fields.String,
+    'image_url': fields.String,
+    'healthcenter': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'name': fields.String,
+        'city': fields.String,})),
+    'entertainment': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'title': fields.String,
+        'city': fields.String,
+    }))
 }
 
 entFields = {
-    'id':fields.Integer,
-    'title':fields.String,          
-    'city':fields.String,           
-    'cost':fields.String,            
-    'category':fields.String,     
-    'location':fields.String,   
-    'event_time':fields.String, 
-    'image_url':fields.String,
-    'healthcenter': fields.List(fields.Nested(hcFields)),
-    'nursinghome': fields.List(fields.Nested(nhFields))
+    'id': fields.Integer,
+    'title': fields.String,
+    'city': fields.String,
+    'cost': fields.String,
+    'category': fields.String,
+    'location': fields.String,
+    'event_time': fields.String,
+    'image_url': fields.String,
+    'healthcenter': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'name': fields.String,
+        'city': fields.String,})),
+    'nursinghome': fields.List(fields.Nested({
+        'id': fields.Integer,
+        'name': fields.String,
+        'address': fields.String,
+    }))
 }
+
+
 class HealthCenters(Resource):
 
     #get all health centers
