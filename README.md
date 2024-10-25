@@ -1,10 +1,9 @@
 # SeniorUplift
-**Website Link:** https://senioruplift.me or senioruplift.me because DNS propagation may still be in progress for https
+**Website Link:** https://senioruplift.me
 
-**API Link:**  _TODO in later phase_
+**API Link:** https://api.senioruplift.me/ 
 
 **Postman API Documentation:** https://documenter.getpostman.com/view/38703996/2sAXxJgtx8
-
 
 ### Canvas / Slack group number:
 * group-08
@@ -40,10 +39,10 @@
 * Name, City, Specializations (type of medicine), Address, Website, Phone Number, Hours, Ratings
 
 ### Nursing Homes:
-* Name, City, Address, Website, Phone Number, Hours, Ratings
+* Name, Address, Rating, Hours, Phone Number, Website, image_url
 
 ### Entertaiment:
-* Name, City, Cost, Address, Website, Phone Number, Hours, Ratings
+* name, city, cost, category, location, event_time, image_url
 
 ### Describe five of those attributes for each model that you can filter or sort:
 * City, Ratings, Name, Hours, Proximity
