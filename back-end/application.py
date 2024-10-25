@@ -45,6 +45,8 @@ nhFields = {
     'phone':fields.String,
     'website':fields.String,
     'image_url':fields.String,
+    'healthcenter': fields.List(fields.Nested(hcFields)),
+    'entertainment': fields.List(fields.Nested(entFields))
 }
 
 entFields = {
@@ -55,7 +57,9 @@ entFields = {
     'category':fields.String,     
     'location':fields.String,   
     'event_time':fields.String, 
-    'image_url':fields.String  
+    'image_url':fields.String,
+    'healthcenter': fields.List(fields.Nested(hcFields)),
+    'nursinghome': fields.List(fields.Nested(nhFields))
 }
 class HealthCenters(Resource):
 

@@ -32,7 +32,7 @@ HealthCenter_Entertainment = Table('healthCenter_entertainment', db.Model.metada
     extend_existing=True
 )
 
-NursingHomes_Entertainment = Table('healthCenter_nursingHomes', db.Model.metadata,
+NursingHomes_Entertainment = Table('nursingHomes_entertainment', db.Model.metadata,
     Column('nursing_home_model_id', Integer, ForeignKey('nursing_home_model.id'), primary_key=True),
     Column('entertainment_model_id', Integer, ForeignKey('entertainment_model.id'), primary_key=True),
     extend_existing=True
