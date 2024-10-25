@@ -7,7 +7,7 @@ const FrontPage = () => {
   const navigate = useNavigate(); 
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid-front">
       <div className="hero-section">
         <div className="hero-text text-center">
           <h1>Welcome to SeniorUpLift</h1>
