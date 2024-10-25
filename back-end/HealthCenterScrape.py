@@ -15,10 +15,12 @@ class Settings(BaseSettings):
     google_crx: str
 
     class Config:
-        env_file = '/.env'
+        env_file = '~/.env'
 load_dotenv()
 settings = Settings()
-
+print("HERE")
+print(settings.google_api)  # Should not be None
+print(settings.google_crx) 
 search = GoogleImagesSearch(settings.google_api, settings.google_crx)
 
 # Function to set up WebDriver and fetch the hospital page
@@ -26,20 +28,24 @@ def getDriver():
     chrome_options = Options()
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
     driver.get("https://www.ahd.com/states/hospital_TX.html")
-    time.sleep(5) 
+    time.sleep(10) 
     return driver, BeautifulSoup(driver.page_source, 'html.parser')
 
 # Function to search for the hospital image
 def getImageURL(hospital_name):
+    time.sleep(1)
     search.search(search_params={
-        'q': hospital_name,
-        'fileType': 'jpg|png',
-        'imgType': 'photo',
+    'q': f'"{hospital_name}" Hospital',  # Added "Hospital" to the query
+    'fileType': 'jpg|png',
+    'imgType': 'photo',
     })
+    print(hospital_name)
+
     results = search.results()
-    if results:
-        return results[0].url
-    return None
+    for x in results:
+        print(x.url)
+        return x.url
+
 
 # Function to scrape hospital data from the webpage
 def getData(sp: BeautifulSoup):
@@ -51,19 +57,23 @@ def getData(sp: BeautifulSoup):
         if name_tag:
             hospital_name = name_tag.get_text(strip=True)
             columns = row.find_all('td')
+            city = columns[0].get_text(strip=True) if len(columns) > 1 else 'N/A'
             beds = columns[1].get_text(strip=True) if len(columns) > 1 else 'N/A'
             discharges = columns[2].get_text(strip=True) if len(columns) > 2 else 'N/A'
             days = columns[3].get_text(strip=True) if len(columns) > 3 else 'N/A'
+            gross = columns[4].get_text(strip=True) if len(columns) > 4 else 'N/A'
 
             # Get the image URL
             image_url = getImageURL(hospital_name)
 
             hospitals_data.append({
                 "Hospital Name": hospital_name,
+                "City": city,
                 "Staffed Beds": beds,
                 "Total Discharges": discharges,
                 "Patient Days": days,
-                "Gross Patient Revenue": image_url
+                "Gross Patient Revenue": gross,
+                "Image URL": image_url,
             })
     
     return hospitals_data
