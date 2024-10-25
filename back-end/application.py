@@ -6,11 +6,16 @@ from models import HealthCenterModel, NursingHomeModel, EntertainmentModel
 from models import api, db, app
 
 
-
 #api home endpoint
 @app.route('/')
 def home():
     return '<h1>SeniorUplift API</h1>'
+
+@app.route('/tables')
+def get_table_names():
+    inspector = db.inspect(db.engine)
+    tables = inspector.get_table_names()
+    return {'tables':tables}, 200
 
 #validate input
 #for post/patch requests, may not need
