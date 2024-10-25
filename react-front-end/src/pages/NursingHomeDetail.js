@@ -17,7 +17,6 @@ const NursingHomeDetail = () => {
       const response = await axios.get('https://api.senioruplift.me/api/nursinghomes/');
       if (response.data) {
         setNursingHomesData(response.data);
-        console.log(nursingHomesData)
         const currentNursingHome = response.data.find(e => e.id === home.id);
         if (currentNursingHome) {
           setHospitals(currentNursingHome.healthcenter || []);
@@ -36,7 +35,6 @@ const NursingHomeDetail = () => {
       navigate('/notfound'); // Redirect or handle the case where no entertainment is provided
     } else {
       fetchNursingHomes();
-      console.log(nearbyHospital)
     }
   }, [home, navigate]);
 
