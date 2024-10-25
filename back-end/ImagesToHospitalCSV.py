@@ -15,7 +15,6 @@ class Settings(BaseSettings):
 
 # Initialize Google Images Search
 load_dotenv()
-print("HEHERHEHRHERHEHREHRHRHEHREHHER")
 print(os.environ.get('GOOGLE_API'))  # Should print your Google API key
 print(os.environ.get('GOOGLE_CRX')) # Should print your Google Custom Search Engine ID
 settings = Settings()
