@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './NursingHomeDetail.css';  
+
 const NursingHomeDetail = () => {
   const { state: home } = useLocation();  
   const [hospitals, setHospitals] = useState([]);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Entertainment.css'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
 
 const Entertainment = () => {
   const [entertainmentData, setEntertainmentData] = useState([]);
@@ -47,7 +48,7 @@ const Entertainment = () => {
   };
 
   if (loading) {
-    return <div>Loading entertainment options...</div>;
+    return <Loader/>;
   }
 
   if (error) {

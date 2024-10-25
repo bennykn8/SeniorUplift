@@ -1,5 +1,6 @@
 import React from 'react';
 import './Healthcare.css';  
+import Loader from '../components/Loader/Loader';
 
 const Healthcare = () => {
   return (

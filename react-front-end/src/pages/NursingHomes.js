@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './NursingHomes.css';  
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
 
 const NursingHomes = () => {
   const [nursingHomesData, setNursingHomesData] = useState([]);
@@ -47,7 +48,7 @@ const NursingHomes = () => {
   };
 
   if (loading) {
-    return <div>Loading nursing homes...</div>;
+    return <Loader/>;
   }
 
   if (error) {
