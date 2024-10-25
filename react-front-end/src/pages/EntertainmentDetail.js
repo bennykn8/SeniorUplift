@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import './EntertainmentDetail.css';  // Assuming you will create this CSS file
-
+import './EntertainmentDetail.css'; 
 const EntertainmentDetail = () => {
-  const { state: entertainment } = useLocation();  // Get the passed entertainment object from the state
+  const { state: entertainment } = useLocation();  
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (entertainment) {
-      fetchDummyNearbyLocations();  // Use dummy data fetching function for nearby hospitals
+      fetchDummyNearbyLocations();  
     }
   }, [entertainment]);
 

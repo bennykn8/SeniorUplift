@@ -8,15 +8,14 @@ const NursingHomes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
   const homesPerPage = 9;
+  const navigate = useNavigate();
 
   const fetchNursingHomes = async () => {
     try {
-      const response = await axios.get('https://api.senioruplift.me//api/nursinghomes/');
+      const response = await axios.get('https://api.senioruplift.me/api/nursinghomes/');
       if (response.data) {
-        setNursingHomesData(response.data);  // Directly set response.data
+        setNursingHomesData(response.data); 
       }
     } catch (err) {
       setError('Error fetching data, please try again later');
@@ -56,8 +55,11 @@ const NursingHomes = () => {
   }
 
   const handleCardClick = (home) => {
-    navigate(`/nursinghomes/${home.id}`, { state: home });  // Pass the entire home object
+    navigate(`/nursinghomes/${home.id}`, { state: home });  
   };
+
+  const startItem = indexOfFirstHome + 1;
+  const endItem = Math.min(indexOfLastHome, nursingHomesData.length);
 
   return (
     <div className="nursing-homes-container">
@@ -83,6 +85,13 @@ const NursingHomes = () => {
             <p>Hours: {home.hours || "No hours available"}</p>
           </div>
         ))}
+      </div>
+
+      {/* Display result range and total */}
+      <div className="results-info">
+        <p>
+          Showing {startItem} - {endItem} of {nursingHomesData.length} results
+        </p>
       </div>
 
       <div className="pagination-controls">

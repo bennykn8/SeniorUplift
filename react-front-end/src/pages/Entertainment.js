@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Entertainment.css';  // Assuming you will create this file
+import './Entertainment.css'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +8,12 @@ const Entertainment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
   const itemsPerPage = 9;
+  const navigate = useNavigate();
 
   const fetchEntertainment = async () => {
     try {
-      const response = await axios.get('https://api.senioruplift.me//api/entertainments/');
+      const response = await axios.get('https://api.senioruplift.me/api/entertainments/');
       if (response.data) {
         setEntertainmentData(response.data);
       }
@@ -55,11 +54,13 @@ const Entertainment = () => {
     return <div>{error}</div>;
   }
 
-  // Function to handle card click, navigating to the EntertainmentDetail page
   const handleCardClick = (item) => {
-    // Navigate to the detailed page with the entertainment item data
     navigate(`/entertainments/${item.id}`, { state: item });
   };
+
+  // Calculate the current range of items being displayed
+  const startItem = indexOfFirstItem + 1;
+  const endItem = Math.min(indexOfLastItem, entertainmentData.length);
 
   return (
     <div className="entertainment-container">
@@ -85,6 +86,13 @@ const Entertainment = () => {
             <p>Time: {item.event_time || "Time not available"}</p>
           </div>
         ))}
+      </div>
+
+      {/* Display result range and total */}
+      <div className="results-info">
+        <p>
+          Showing {startItem} - {endItem} of {entertainmentData.length} results
+        </p>
       </div>
 
       <div className="pagination-controls">

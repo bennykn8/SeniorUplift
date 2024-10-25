@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import './NursingHomeDetail.css';  // Create this CSS file for styling
-
+import './NursingHomeDetail.css';  
 const NursingHomeDetail = () => {
-  const { state: home } = useLocation();  // Get the passed home object from the state
+  const { state: home } = useLocation();  
   const [hospitals, setHospitals] = useState([]);
   const [entertainment, setEntertainment] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,21 +10,18 @@ const NursingHomeDetail = () => {
 
   useEffect(() => {
     if (home) {
-      fetchDummyNearbyLocations();  // Use dummy data fetching function
+      fetchDummyNearbyLocations();  
     }
   }, [home]);
 
-  // Dummy function to simulate fetching hospitals and entertainment
   const fetchDummyNearbyLocations = () => {
     try {
-      // Dummy hospitals data
       const dummyHospitals = [
         { name: "City Hospital", address: "123 Health St, Cityville", rating: 4.5, phone: "123-456-7890" },
         { name: "General Clinic", address: "456 Wellness Rd, Cityville", rating: 4.0, phone: "234-567-8901" }
       ];
       setHospitals(dummyHospitals);
 
-      // Dummy entertainment data
       const dummyEntertainment = [
         { name: "City Cinema", address: "789 Movie Ln, Cityville", rating: 4.7, phone: "345-678-9012" },
         { name: "Amusement Park", address: "101 Fun St, Cityville", rating: 4.8, phone: "456-789-0123" }

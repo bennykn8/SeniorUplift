@@ -1,10 +1,10 @@
 import React from 'react';
-import './FrontPage.css';  // Assuming the CSS file is named FrontPage.css
+import './FrontPage.css'; 
 import { Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const FrontPage = () => {
-  const navigate = useNavigate();  // Initialize navigate
+  const navigate = useNavigate(); 
 
   return (
     <div className="container-fluid">
@@ -19,7 +19,6 @@ const FrontPage = () => {
         </div>
       </div>
 
-      {/* Carousel Slideshow in a smaller container */}
       <div className="carousel-container mt-5">
         <Carousel>
           <Carousel.Item>
@@ -63,7 +62,6 @@ const FrontPage = () => {
           <p>Find the best healthcare centers nearby with ratings and reviews.</p>
         </div>
 
-        {/* Nursing Homes Box as a Button */}
         <div 
           className="col-md-4 text-center feature-item clickable-box" 
           onClick={() => navigate('/nursing-homes')} 

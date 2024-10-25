@@ -1,4 +1,4 @@
-/* Global Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,6 @@
     background: #f4f4f4;
   }
   
-  /* Hero Section */
   .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://media.istockphoto.com/id/660654876/photo/group-of-senior-retirement-friends-happiness-concept.jpg?s=612x612&w=0&k=20&c=ng9gozcERkIBcroZ4E8TUfpPB7ywckHi8KtL6Ehj0SI=') no-repeat center center/cover;
     height: 100vh;
@@ -61,17 +60,16 @@
     }
   }
   
-  /* Carousel Section */
   .carousel-container {
-    max-width: 900px; /* Set a max width for the carousel */
-    margin: 0 auto; /* Center the carousel */
+    max-width: 900px; 
+    margin: 0 auto;
   }
   
   .carousel-img {
-    width: 100%; /* Ensure the images take the full width of the carousel */
-    height: 450px; /* Set a fixed height for uniformity */
-    object-fit: cover; /* Make sure the image covers the carousel without stretching */
-    border-radius: 10px; /* Rounded corners for the carousel images */
+    width: 100%; 
+    height: 450px; 
+    object-fit: cover; 
+    border-radius: 10px;
   }
   
   .carousel-item img {
@@ -79,7 +77,6 @@
     object-fit: cover;
   }
   
-  /* Features Section */
   .features-section {
     background-color: #ffffff;
     padding: 4rem 2rem;
@@ -117,7 +114,6 @@
     transform: rotate(5deg);
   }
   
-  /* Footer */
   .footer {
     padding: 2rem;
     background-color: #333;
@@ -136,7 +132,6 @@
     font-size: 0.9rem;
   }
   
-  /* Media Queries for Responsiveness */
   @media (max-width: 768px) {
     .hero-text h1 {
       font-size: 2.5rem;
@@ -151,7 +146,7 @@
     }
   
     .carousel-img {
-      height: 300px; /* Adjust for mobile screens */
+      height: 300px; 
     }
   
     .features-section {

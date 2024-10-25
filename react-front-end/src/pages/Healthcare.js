@@ -1,5 +1,5 @@
 import React from 'react';
-import './Healthcare.css';  // Assuming you will add the styles here
+import './Healthcare.css';  
 
 const Healthcare = () => {
   return (
