@@ -46,7 +46,7 @@ nhFields = {
     'website':fields.String,
     'image_url':fields.String,
     'healthcenter': fields.List(fields.Nested(hcFields)),
-    'entertainment': fields.List(fields.Nested(entFields))
+    #'entertainment': fields.List(fields.Nested(entFields))
 }
 
 entFields = {
