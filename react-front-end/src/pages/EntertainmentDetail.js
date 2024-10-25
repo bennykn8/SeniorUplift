@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './EntertainmentDetail.css'; 
 const EntertainmentDetail = () => {
   const { state: entertainment } = useLocation();  
   const [hospitals, setHospitals] = useState([]);
+  const [nursinghomes, setNursinghomes] = useState(entertainment.nursinghome);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (entertainment) {
       fetchDummyNearbyLocations();  
     }
+    console.log(nursinghomes)
   }, [entertainment]);
 
   // Dummy function to simulate fetching nearby hospitals
@@ -77,6 +80,29 @@ const EntertainmentDetail = () => {
           <p>No nearby hospitals found.</p>
         )}
       </div>
+
+      {/* Display nearby nursing homes */}
+      <div className="nearby-locations">
+      <h2>Nearby Nursing Homes</h2>
+      {nursinghomes.length > 0 ? (
+        <ul>
+          {nursinghomes.map((nursinghome, index) => (
+            <li
+              key={index}
+              onClick={() => navigate(`/nursinghomes/${nursinghome.id}`, { state: nursinghome })}
+              style={{ cursor: 'pointer' }}
+            >
+              <strong>{nursinghome.name}</strong><br />
+              {nursinghome.address}<br />
+              Rating: {nursinghome.rating ? `${nursinghome.rating}/5` : "No rating available"}<br />
+              Phone: {nursinghome.phone || "Phone not available"}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No nearby nursing homes found.</p>
+      )}
+    </div>
     </div>
   );
 };
