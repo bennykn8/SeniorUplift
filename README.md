@@ -9,7 +9,7 @@
 * group-08
 
 ### names of the team members:
-* Rikhil Kalidindi, Will Kung, Benny Nguyen, Rohan Aggarwal, Pranav Akkaraju
+* Rikhil Kalidindi, Will Kung, Benny Nguyen, Rohan Aggarwal, Pranav Akkaraju 
 
 ### name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL):
 * SeniorUplift
