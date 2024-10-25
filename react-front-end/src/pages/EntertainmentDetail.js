@@ -4,32 +4,13 @@ import './EntertainmentDetail.css';
 
 const EntertainmentDetail = () => {
   const { state: entertainment } = useLocation();  
-  const [hospitals, setHospitals] = useState([]);
+  const [hospitals, setHospitals] = useState(entertainment.healthcenter);
   const [nursinghomes, setNursinghomes] = useState(entertainment.nursinghome);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (entertainment) {
-      fetchDummyNearbyLocations();  
-    }
-  }, [entertainment]);
-
-  // Dummy function to simulate fetching nearby hospitals
-  const fetchDummyNearbyLocations = () => {
-    try {
-      const dummyHospitals = [
-        { name: "General Hospital", address: "123 Medical St, Entertainmentville", rating: 4.2, phone: "123-456-7890" },
-        { name: "Health Clinic", address: "789 Wellness Rd, Entertainmentville", rating: 4.1, phone: "234-567-8901" }
-      ];
-      setHospitals(dummyHospitals);
-    } catch (err) {
-      setError('Error fetching nearby locations.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  console.log(entertainment)
 
   if (!entertainment) {
     return <div>No entertainment details available.</div>;
@@ -68,7 +49,11 @@ const EntertainmentDetail = () => {
         {hospitals.length > 0 ? (
           <ul>
             {hospitals.slice(0, 3).map((hospital, index) => (
-              <li key={index}>
+                <li
+                key={index}
+                onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
+                style={{ cursor: 'pointer' }}
+              >
                 <strong>{hospital.name}</strong><br />
                 {hospital.address}<br />
                 Rating: {hospital.rating ? `${hospital.rating}/5` : "No rating available"}<br />
@@ -103,6 +88,7 @@ const EntertainmentDetail = () => {
           <p>No nearby hospitals found.</p>
         )}
       </div>
+      
     </div>
   );
 };
