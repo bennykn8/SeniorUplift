@@ -19,8 +19,8 @@ selenium:
   services:
     - selenium/standalone-chrome:latest
   script:
-    - pip install selenium
     - cd react-front-end/selenium_tests
+    - pip install selenium
     - python acceptance_tests.py
 
 backend:
