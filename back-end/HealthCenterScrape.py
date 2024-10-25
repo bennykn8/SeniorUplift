@@ -20,13 +20,14 @@ class Settings(BaseSettings):
         env_file = '~/.env'
 load_dotenv()
 settings = Settings()
-print("HERE")
-print(settings.google_api)  # Should not be None
-print(settings.google_crx) 
+# print("HERE")
+# print(settings.google_api)  # Should not be None
+# print(settings.google_crx) 
 search = GoogleImagesSearch(settings.google_api, settings.google_crx)
 
 filename = "hospitals_data_cleaned.csv"
 data = pd.read_csv(filename)
+data = data.where(pd.notnull(data), None)
 
 # add to database from csv
 def insert_health_centers(data):
