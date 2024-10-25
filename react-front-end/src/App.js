@@ -19,6 +19,7 @@ import NursingHomes from './pages/NursingHomes';
 import Healthcare from './pages/Healthcare';
 import Entertainment from './pages/Entertainment';
 import NursingHomeDetail from './pages/NursingHomeDetail';
+import EntertainmentDetail from './pages/EntertainmentDetail'; 
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/nursinghomes/:id" element={<NursingHomeDetail />} />
           <Route path="/healthcare" element={<Healthcare />} />
           <Route path="/entertainment" element={<Entertainment />} />
+          <Route path="/entertainments/:id" element={<EntertainmentDetail />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Router>

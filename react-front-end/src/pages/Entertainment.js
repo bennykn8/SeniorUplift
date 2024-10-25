@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Entertainment.css';  // Assuming you will add the styles here
+import './Entertainment.css';  // Assuming you will create this file
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,13 +10,13 @@ const Entertainment = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const itemsPerPage = 9;  // Similar to homesPerPage in NursingHomes.js
+  const itemsPerPage = 9;
 
   const fetchEntertainment = async () => {
     try {
-      const response = await axios.get('https://api.senioruplift.me/api/entertainments/');
+      const response = await axios.get('https://api.senioruplift.me//api/entertainments/');
       if (response.data) {
-        setEntertainmentData(response.data);  // Set fetched entertainment data
+        setEntertainmentData(response.data);
       }
     } catch (err) {
       setError('Error fetching data, please try again later');
@@ -55,8 +55,10 @@ const Entertainment = () => {
     return <div>{error}</div>;
   }
 
+  // Function to handle card click, navigating to the EntertainmentDetail page
   const handleCardClick = (item) => {
-    navigate(`/entertainments/${item.id}`, { state: item });  // Pass the entire item object
+    // Navigate to the detailed page with the entertainment item data
+    navigate(`/entertainments/${item.id}`, { state: item });
   };
 
   return (
@@ -77,10 +79,10 @@ const Entertainment = () => {
 
             <h3>{item.title}</h3>
             <p>Location: {item.city}</p>
+            <p>Venue: {item.location || "Venue not available"}</p>
             <p>Cost: {item.cost || "Cost not available"}</p>
             <p>Category: {item.category || "Category not available"}</p>
             <p>Time: {item.event_time || "Time not available"}</p>
-            <p>Website: <a href={item.website} target="_blank" rel="noopener noreferrer">{item.website || "Website not available"}</a></p>
           </div>
         ))}
       </div>

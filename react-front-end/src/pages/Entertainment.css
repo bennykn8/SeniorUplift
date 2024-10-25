@@ -1,42 +1,107 @@
 .entertainment-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .entertainment-title {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .entertainment-description {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .entertainment-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.entertainment-item {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  width: 230px;
+  display: inline-block;
+  vertical-align: top;
+  height: 370px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.entertainment-item:hover {
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.entertainment-image {
+  width: 100%;
+  max-width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.entertainment-item h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 5px 0;
+  height: auto;
+  white-space: normal;
+  overflow: hidden;
+}
+
+.entertainment-item p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.entertainment-item a {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.85em;
+}
+
+.entertainment-item a:hover {
+  text-decoration: underline;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  padding: 5px 15px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.entertainment-title {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+}
+
+.entertainment-description {
+  font-size: 1em;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
   .entertainment-item {
-    background-color: white;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+    width: 100%;
+    margin: 10px 0;
+    height: auto;
   }
-  
-  .entertainment-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .entertainment-item p {
-    font-size: 1rem;
-  }
-  
+}
