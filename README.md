@@ -18,9 +18,9 @@
 * Welfare support for the elderly population in Texas that includes nearest healthcare centers, nursing homes, and nearby entertainment
 
 ### URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this):
-1. Health Centers: https://data.medicare.gov/developers (Restful API)
-2. Nursing Homes: https://caretexas.net/list01_Texas_nursing_homes.htm
-3. Entertainment: https://www.traveltexas.com/
+1. Health Centers: https://www.ahd.com/ 
+2. Nursing Homes: https://mapsplatform.google.com/ (Restful API)
+3. Entertainment: https://www.eventbrite.com/d/united-states--texas/senior-events/
 
 
 ### at least three models:
@@ -85,3 +85,23 @@ Phase Leader: Rohan Aggarwal
 Phase Leader Responsibilities: Phase leader Rohan keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
 
 Final Git SHA for Phase 1: b48f1ec50ba4a88d7988c4f5f10e2720e9c107f9
+
+
+Estimated Time Completion Phase 1:
+Rohan Aggarwal - 20 hrs
+Rikhil Kalidindi - 20 hrs
+Pranav Akkaraju - 20 hrs
+Will Kung - 20 hrs
+Benny Nguyen - 20 hrs
+
+Actual Time Completion Phase 1:
+Rohan Aggarwal - 40 hrs
+Rikhil Kalidindi - 20 hrs
+Pranav Akkaraju - 20 hrs
+Will Kung - 20 hrs
+Benny Nguyen - 35 hrs
+
+Phase Leader: Benny Nguyen
+Phase Leader Responsibilities: Phase leader Benny keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
+
+Final Git SHA for Phase 2: TO DO
