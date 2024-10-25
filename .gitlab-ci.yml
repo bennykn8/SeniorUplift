@@ -17,9 +17,9 @@ selenium:
   stage: selenium-tests
   image: python:latest
   services:
-  - selenium/standalone-chrome:latest
+    - selenium/standalone-chrome:latest
   script:
-  - cd react-front-end/selenium_tests
+    - cd react-front-end/selenium_tests
 
 backend:
   stage: backend-tests
