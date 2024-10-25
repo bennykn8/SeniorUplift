@@ -25,7 +25,7 @@ settings = Settings()
 # print(settings.google_crx) 
 search = GoogleImagesSearch(settings.google_api, settings.google_crx)
 
-filename = "hospitals_data_cleaned.csv"
+filename = "hospitals_data_cleaned.csv" 
 data = pd.read_csv(filename)
 data = data.where(pd.notnull(data), None)
 
@@ -45,7 +45,7 @@ def insert_health_centers(data):
                 print(f"Entry for {name} in {city} already exists. Skipping...")
                 continue
 
-            # Create a new HealthCenterModel entry
+            # Create a new HealthCenterModel entry with data
             health_center = HealthCenterModel(
                 name=name,
                 city=city,
