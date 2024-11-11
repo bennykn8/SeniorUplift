@@ -1,6 +1,7 @@
-from flask import Flask 
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc, or_
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 from models import HealthCenterModel, NursingHomeModel, EntertainmentModel 
 from models import api, db, app
@@ -16,15 +17,6 @@ def get_table_names():
     inspector = db.inspect(db.engine)
     tables = inspector.get_table_names()
     return {'tables':tables}, 200
-
-#validate input
-#for post/patch requests, may not need
-# healthcenter_args = reqparse.RequestParser()
-# healthcenter_args.add_argument('name', type=str, required=True, help="must have name")
-# healthcenter_args.add_argument('city', type=str, required=True, help="must have city")
-# healthcenter_args.add_argument('ratings', type=float, required=True, help="must have rating")
-# healthcenter_args.add_argument('hours', type=str, required=True, help="must have hours")
-# healthcenter_args.add_argument('phone', type=str, required=True, help="must have phone")
 
 hcFields = {
     'id': fields.Integer,
@@ -56,25 +48,6 @@ hcFields = {
         'image_url': fields.String,
     }))
 }
-
-# hcFields = {
-#     'id': fields.Integer,
-#     'name': fields.String,
-#     'city': fields.String,
-#     'ratings': fields.Float,
-#     'hours': fields.String,
-#     'phone': fields.String,
-#     'nursinghome': fields.List(fields.Nested({
-#         'id': fields.Integer,
-#         'name': fields.String,
-#         'address': fields.String,
-#     })),
-#     'entertainment': fields.List(fields.Nested({
-#         'id': fields.Integer,
-#         'title': fields.String,
-#         'city': fields.String,
-#     }))
-# }
 
 nhFields = {
     'id': fields.Integer,
@@ -144,18 +117,34 @@ class HealthCenters(Resource):
     #get all health centers
     @marshal_with(hcFields)
     def get(self):
-        hcs = HealthCenterModel.query.all()
+        #attribute to sort by
+        sort = request.args.get("sort", "id") #ex: /api/healthcenters/?sort=beds
+        #sort by ascending or decsending order
+        descend = request.args.get("descend", "no") #ex: /api/healthcenters/?sort=beds&descend=yes
+        #search by keyword
+        search = request.args.get("search", "") #ex: /api/healthcenters/?search=clinic
+
+        query = HealthCenterModel.query
+
+        #sort
+        if descend == "yes" :
+            query = query.order_by(desc(getattr(HealthCenterModel, sort, 'id')))
+        else :
+            query = query.order_by(getattr(HealthCenterModel, sort, 'id'))
+
+        #search
+        if search :
+            query = query.filter(or_(HealthCenterModel.name.like(f"%{search}%"),
+                             HealthCenterModel.city.like(f"%{search}%"),
+                             HealthCenterModel.beds.like(f"%{search}%"),
+                             HealthCenterModel.discharges.like(f"%{search}%"),
+                             HealthCenterModel.patient_days.like(f"%{search}%"),
+                             HealthCenterModel.revenue.like(f"%{search}%") 
+                             ))
+
+        hcs = query.all()
         return hcs
-    '''
-    #post hc
-    @marshal_with(hcFields)
-    def post(self):
-        args = healthcenter_args.parse_args()
-        user = HealthCenterModel(name = args["name"], city = args["city"], ratings = args["ratings"], hours = args["hours"], phone = args["phone"])
-        db.session.add(user)
-        db.session.commit()
-        hcs = HealthCenterModel.query.all()
-        return hcs, 201'''
+    
     
 class HealthCenter(Resource):
 
@@ -166,23 +155,39 @@ class HealthCenter(Resource):
         if not hc:
             abort(404, "health center not found")
         return hc
-    '''
-    @marshal_with(hcFields)
-    def delete(self, id):
-        user = HealthCenterModel.query.filter_by(id=id).first()
-        if not user:
-            abort(404, "user not found")
-        db.session.delete(user)
-        db.session.commit()
-        users = HealthCenterModel.query.all()
-        return users'''
+    
     
 class NursingHomes(Resource):
 
     #get all health centers
     @marshal_with(nhFields)
     def get(self):
-        nhs = NursingHomeModel.query.all()
+        #attribute to sort by
+        sort = request.args.get("sort", "id")
+        #sort by ascending or decsending order
+        descend = request.args.get("descend", "no")
+        #search by keyword
+        search = request.args.get("search", "")
+
+        query = NursingHomeModel.query
+
+        #sort
+        if descend == "yes" :
+            query = query.order_by(desc(getattr(NursingHomeModel, sort, 'id')))
+        else :
+            query = query.order_by(getattr(NursingHomeModel, sort, 'id'))
+
+        #search
+        if search :
+            query = query.filter(or_(NursingHomeModel.name.like(f"%{search}%"),
+                             NursingHomeModel.address.like(f"%{search}%"),
+                             NursingHomeModel.rating.like(f"%{search}%"),
+                             NursingHomeModel.hours.like(f"%{search}%"),
+                             NursingHomeModel.phone.like(f"%{search}%"),
+                             NursingHomeModel.website.like(f"%{search}%") 
+                             ))
+
+        nhs = query.all()
         return nhs
     
 class NursingHome(Resource):
@@ -199,7 +204,32 @@ class Entertainments(Resource):
     # Get all entertainment centers
     @marshal_with(entFields)
     def get(self):
-        entertains = EntertainmentModel.query.all()
+        #attribute to sort by
+        sort = request.args.get("sort", "id")
+        #sort by ascending or decsending order
+        descend = request.args.get("descend", "no")
+        #search by keyword
+        search = request.args.get("search", "")
+
+        query = EntertainmentModel.query
+
+        #sort
+        if descend == "yes" :
+            query = query.order_by(desc(getattr(EntertainmentModel, sort, 'id')))
+        else :
+            query = query.order_by(getattr(EntertainmentModel, sort, 'id'))
+
+        #search
+        if search :
+            query = query.filter(or_(EntertainmentModel.title.like(f"%{search}%"),
+                             EntertainmentModel.city.like(f"%{search}%"),
+                             EntertainmentModel.cost.like(f"%{search}%"),
+                             EntertainmentModel.category.like(f"%{search}%"),
+                             EntertainmentModel.location.like(f"%{search}%"),
+                             EntertainmentModel.event_time.like(f"%{search}%") 
+                             ))
+
+        entertains = query.all()
         return entertains
 
 class Entertainment(Resource):
