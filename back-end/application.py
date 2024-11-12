@@ -5,7 +5,6 @@ from sqlalchemy import desc, or_
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 from models import HealthCenterModel, NursingHomeModel, EntertainmentModel 
 from models import api, db, app
-from sqlalchemy import case
 
 
 #api home endpoint
@@ -32,11 +31,21 @@ hcFields = {
         'id': fields.Integer,
         'name': fields.String,
         'address': fields.String,
+        'ratings': fields.Float,
+        'hours': fields.String,
+        'phone': fields.String,
+        'website': fields.String,
+        'image_url': fields.String,
     })),
     'entertainment': fields.List(fields.Nested({
         'id': fields.Integer,
         'title': fields.String,
         'city': fields.String,
+        'cost': fields.String,
+        'category': fields.String,
+        'location': fields.String,
+        'event_time': fields.String,
+        'image_url': fields.String,
     }))
 }
 
@@ -53,11 +62,21 @@ nhFields = {
         'id': fields.Integer,
         'name': fields.String,
         'city': fields.String,
+        'beds': fields.Integer,
+        'discharges': fields.Integer,
+        'patient_days': fields.Integer,
+        'revenue': fields.Integer,
+        'image_url': fields.String,
     })),
     'entertainment': fields.List(fields.Nested({
         'id': fields.Integer,
         'title': fields.String,
         'city': fields.String,
+        'cost': fields.String,
+        'category': fields.String,
+        'location': fields.String,
+        'event_time': fields.String,
+        'image_url': fields.String,
     }))
 }
 
@@ -74,11 +93,20 @@ entFields = {
         'id': fields.Integer,
         'name': fields.String,
         'city': fields.String,
+        'discharges': fields.Integer,
+        'patient_days': fields.Integer,
+        'revenue': fields.Integer,
+        'image_url': fields.String,
     })),
     'nursinghome': fields.List(fields.Nested({
         'id': fields.Integer,
         'name': fields.String,
         'address': fields.String,
+        'ratings': fields.Float,
+        'hours': fields.String,
+        'phone': fields.String,
+        'website': fields.String,
+        'image_url': fields.String,
     }))
 }
 

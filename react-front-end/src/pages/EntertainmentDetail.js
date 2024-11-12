@@ -67,7 +67,8 @@ const EntertainmentDetail = () => {
                 onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
                 style={{ cursor: 'pointer' }}>
                   <strong>{hospital.name}</strong><br />
-                  City: {hospital.city || "City not available"}
+                  City: {hospital.city || "City not available"}<br />
+                  Discharges: {hospital.discharges || "Discharges not available"}
                 </li>
             ))}
           </ul>
@@ -84,7 +85,9 @@ const EntertainmentDetail = () => {
                     onClick={() => navigate(`/nursinghomes/${nursinghome.id}`, { state: nursinghome })}
                     style={{ cursor: 'pointer' }}>
                   <strong>{nursinghome.name}</strong><br />
-                  {nursinghome.address}
+                  {nursinghome.address}<br />
+                  Rating: {nursinghome.rating ? `${nursinghome.rating}/5` : "No rating available"}<br />
+                  Phone: {nursinghome.phone || "Phone not available"}
                 </li>
             ))}
           </ul>
