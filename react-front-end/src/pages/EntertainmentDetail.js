@@ -59,9 +59,12 @@ const EntertainmentDetail = () => {
 
       <div className="entertainment-description">
         <p>
-          This entertainment event is taking place in {entertainment.city}. Hosted at {entertainment.location || "a venue currently not specified"}, it falls under the category of {entertainment.category || "an unspecified category"}. Tickets are priced at {entertainment.cost || "an undisclosed amount"}, and the event is scheduled for {entertainment.event_time || "a time that is currently unavailable"}. Join in for an exciting experience!
+          Experience an exciting event in {entertainment.city} at {entertainment.location || "a venue yet to be announced"}. This event, categorized under {entertainment.category || "a currently unspecified category"}, promises an engaging and memorable experience for all attendees. Whether you’re looking to explore something new or revisit a favorite pastime, this event offers an opportunity for fun and entertainment. 
+
+          Tickets are priced at {entertainment.cost || "a rate that will be shared soon"}, making it accessible for a variety of audiences. Scheduled for {entertainment.event_time || "a time yet to be determined"}, you’ll want to mark your calendar once the details are confirmed. Gather your friends or family and come enjoy a day or evening of entertainment that’s bound to be lively and memorable. Stay tuned for more details to ensure you don't miss out on this exciting occasion!
         </p>
       </div>
+
 
 
       {/* Display nearby hospitals */}

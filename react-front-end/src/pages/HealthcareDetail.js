@@ -57,7 +57,7 @@ const HealthcareDetail = () => {
         <p><strong>Revenue:</strong> {center.revenue ? `$${center.revenue.toLocaleString()}` : "N/A"}</p>
       </div>
 
-      <div className="healthcare-center-description">
+      <div className="healthcare-description">
         <p>
           Located in {center.city}, this healthcare center offers a range of services and facilities, including a bed capacity of {center.beds || "N/A"}. With {center.discharges || "no discharge data available"} recorded discharges and {center.patient_days || "N/A"} patient days, the center serves a significant number of patients each year. The center generates an annual revenue of {center.revenue ? `$${center.revenue.toLocaleString()}` : "undisclosed"}.
         </p>
