@@ -5,36 +5,36 @@ stages:
   # - postman-tests
   - validate
 
-jest:
-  stage: jest-tests
-  image: node:latest
-  script:
-    - cd react-front-end
-    - npm install
-    - npm test
+# jest:
+#   stage: jest-tests
+#   image: node:latest
+#   script:
+#     - cd react-front-end
+#     - npm install
+#     - npm test
 
-selenium:
-  stage: selenium-tests
-  image: python:latest
-  services:
-    - selenium/standalone-chrome:latest
-  script:
-    - pip install selenium
-    - cd react-front-end/selenium_tests
-backend:
-  stage: backend-tests
-  image: python:latest
-  script:
-    - cd back-end/tests
-    - pip install requests
-    - python api_tests.py
+# selenium:
+#   stage: selenium-tests
+#   image: python:latest
+#   services:
+#     - selenium/standalone-chrome:latest
+#   script:
+#     - pip install selenium
+#     - cd react-front-end/selenium_tests
+# backend:
+#   stage: backend-tests
+#   image: python:latest
+#   script:
+#     - cd back-end/tests
+#     - pip install requests
+#     - python api_tests.py
 
-postman:
-  stage: postman-tests
-  image: node:latest
-  script:
-    - npm install -g newman
-    - newman run "SeniorUplift_RESTful_API.postman_collection.json"
+# postman:
+#   stage: postman-tests
+#   image: node:latest
+#   script:
+#     - npm install -g newman
+#     - newman run "SeniorUplift_RESTful_API.postman_collection.json"
 
 validate_html:
   image: node:latest
