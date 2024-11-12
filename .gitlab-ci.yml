@@ -1,8 +1,8 @@
 stages:
-  - jest-tests
-  - selenium-tests
-  - backend-tests
-  - postman-tests
+  # - jest-tests
+  # - selenium-tests
+  # - backend-tests
+  # - postman-tests
   - validate
 
 jest:

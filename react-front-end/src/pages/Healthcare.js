@@ -19,9 +19,7 @@ const Healthcare = () => {
     try {
       const queryParams = new URLSearchParams(updatedFilters).toString();
       const response = await axios.get(`https://api.senioruplift.me/api/healthcenters/?${queryParams}`);
-      if (response.data) {
-        setHealthcareData(response.data);
-      }
+      setHealthcareData(response.data || []);
     } catch (err) {
       setError('Error fetching data, please try again later');
     } finally {
@@ -31,25 +29,7 @@ const Healthcare = () => {
 
   useEffect(() => {
     fetchHealthcareCenters(filters);
-  }, [filters.sort, filters.descend]);
-
-  const indexOfLastCenter = currentPage * centersPerPage;
-  const indexOfFirstCenter = indexOfLastCenter - centersPerPage;
-  const currentCenters = healthcareData.slice(indexOfFirstCenter, indexOfLastCenter);
-
-  const totalPages = Math.ceil(healthcareData.length / centersPerPage);
-
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  }, [filters]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -69,8 +49,22 @@ const Healthcare = () => {
     navigate(`/healthcenters/${center.id}`, { state: center });
   };
 
-  const startItem = indexOfFirstCenter + 1;
-  const endItem = Math.min(indexOfLastCenter, healthcareData.length);
+  const indexOfLastCenter = currentPage * centersPerPage;
+  const indexOfFirstCenter = indexOfLastCenter - centersPerPage;
+  const currentCenters = healthcareData.slice(indexOfFirstCenter, indexOfLastCenter);
+  const totalPages = Math.ceil(healthcareData.length / centersPerPage);
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   if (loading) {
     return <Loader />;
@@ -95,11 +89,7 @@ const Healthcare = () => {
           onChange={handleSearchChange}
           className="filter-input"
         />
-        <button
-          type="button"
-          onClick={handleSearchClick}
-          className="filter-button"
-        >
+        <button type="button" onClick={handleSearchClick} className="filter-button">
           Search
         </button>
         <select
@@ -125,9 +115,9 @@ const Healthcare = () => {
         </select>
       </form>
       <div className="healthcare-list">
-        {currentCenters.map((center, index) => (
+        {currentCenters.map((center) => (
           <div
-            key={index}
+            key={center.id}
             className="healthcare-item"
             onClick={() => handleCardClick(center)}
             style={{ cursor: 'pointer' }}
@@ -156,7 +146,8 @@ const Healthcare = () => {
       </div>
       <div className="results-info">
         <p>
-          Showing {startItem} - {endItem} of {healthcareData.length} results
+          Showing {indexOfFirstCenter + 1} - {Math.min(indexOfLastCenter, healthcareData.length)} of{' '}
+          {healthcareData.length} results
         </p>
       </div>
       <div className="pagination-controls">
