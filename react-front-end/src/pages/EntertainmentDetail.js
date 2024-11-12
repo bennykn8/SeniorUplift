@@ -57,6 +57,13 @@ const EntertainmentDetail = () => {
         <p><strong>Time:</strong> {entertainment.event_time || "Time not available"}</p>
       </div>
 
+      <div className="entertainment-description">
+        <p>
+          This entertainment event is taking place in {entertainment.city}. Hosted at {entertainment.location || "a venue currently not specified"}, it falls under the category of {entertainment.category || "an unspecified category"}. Tickets are priced at {entertainment.cost || "an undisclosed amount"}, and the event is scheduled for {entertainment.event_time || "a time that is currently unavailable"}. Join in for an exciting experience!
+        </p>
+      </div>
+
+
       {/* Display nearby hospitals */}
       <div className="nearby-locations">
         <h2>Nearby Hospitals</h2>
