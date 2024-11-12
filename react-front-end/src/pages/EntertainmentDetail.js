@@ -84,9 +84,7 @@ const EntertainmentDetail = () => {
                     onClick={() => navigate(`/nursinghomes/${nursinghome.id}`, { state: nursinghome })}
                     style={{ cursor: 'pointer' }}>
                   <strong>{nursinghome.name}</strong><br />
-                  {nursinghome.address}<br />
-                  Rating: {nursinghome.rating ? `${nursinghome.rating}/5` : "No rating available"}<br />
-                  Phone: {nursinghome.phone || "Phone not available"}
+                  {nursinghome.address}
                 </li>
             ))}
           </ul>
