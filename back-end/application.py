@@ -5,6 +5,7 @@ from sqlalchemy import desc, or_
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
 from models import HealthCenterModel, NursingHomeModel, EntertainmentModel 
 from models import api, db, app
+from sqlalchemy import case
 
 
 #api home endpoint
