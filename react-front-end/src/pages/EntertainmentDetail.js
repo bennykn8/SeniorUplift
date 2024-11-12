@@ -67,8 +67,7 @@ const EntertainmentDetail = () => {
                 onClick={() => navigate(`/healthcenters/${hospital.id}`, { state: hospital })}
                 style={{ cursor: 'pointer' }}>
                   <strong>{hospital.name}</strong><br />
-                  City: {hospital.city || "City not available"}<br />
-                  Discharges: {hospital.discharges || "Discharges not available"}
+                  City: {hospital.city || "City not available"}
                 </li>
             ))}
           </ul>
