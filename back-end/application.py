@@ -93,11 +93,7 @@ entFields = {
         'id': fields.Integer,
         'name': fields.String,
         'city': fields.String,
-        'beds': fields.Integer,
-        'discharges': fields.Integer,
-        'patient_days': fields.Integer,
-        'revenue': fields.Integer,
-        'image_url': fields.String,
+        'discharges': fields.Integer
     })),
     'nursinghome': fields.List(fields.Nested({
         'id': fields.Integer,
