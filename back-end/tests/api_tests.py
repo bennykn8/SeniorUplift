@@ -1,61 +1,79 @@
 import unittest
 import requests
+import json
 
 class TestAPIEndpoints(unittest.TestCase):
 
+    BASE_URL = "https://api.senioruplift.me/api/"
+
     ### Helper Methods ### 
 
-    # Fetches a response from the backend (as a raw string) and checks the
-    # status code, given the API endpoint and an expected status
-    def fetch_raw_results(self, endpoint, expected_status=200):
-        url = f"https://api.senioruplift.me/api/{endpoint}"
-        response = requests.get(url)
-        status = response.status_code
-        assert status == expected_status, \
-            f"Received status {status} for {url}; expected {expected_status}"
-        return response.text
-    
+    def fetch_results(self, endpoint, expected_status=200):
+        """Helper method to fetch results from the API and validate response status."""
+        response = requests.get(self.BASE_URL + endpoint)
+        self.assertEqual(response.status_code, expected_status, 
+                         f"Received status {response.status_code} for {endpoint}; expected {expected_status}")
+        return response
+
     ### Unit Tests ###
 
-    # Test retrieving all health centers
-    def test_0_health_centers(self):
-        self.fetch_raw_results("healthcenters/")
+    def test_health_centers_list(self):
+        """Test retrieving all health centers."""
+        response = self.fetch_results("healthcenters/")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
 
-    def test_1_health_center_by_id(self):
-        self.fetch_raw_results("healthcenter/1", expected_status=500)
+    def test_health_center_by_id(self):
+        """Test retrieving a single health center by ID with expected failure."""
+        self.fetch_results("healthcenter/1", expected_status=500)
 
-    def test_2_nursing_homes(self):
-        self.fetch_raw_results("nursinghomes/")
+    def test_nursing_homes_list(self):
+        """Test retrieving all nursing homes."""
+        response = self.fetch_results("nursinghomes/")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
 
-    def test_3_nursing_home_by_id(self):
-        self.fetch_raw_results("nursinghome/1")
+    def test_nursing_home_by_id(self):
+        """Test retrieving a single nursing home by ID."""
+        response = self.fetch_results("nursinghome/1")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, dict)
 
-    def test_4_entertainments(self):
-        self.fetch_raw_results("entertainments/")
+    def test_entertainments_list(self):
+        """Test retrieving all entertainments."""
+        response = self.fetch_results("entertainments/")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
 
-    def test_5_entertainment_by_id(self):
-        self.fetch_raw_results("entertainment/1", expected_status=200)
+    def test_entertainment_by_id(self):
+        """Test retrieving a single entertainment by ID."""
+        response = self.fetch_results("entertainment/1", expected_status=200)
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, dict)
 
-    def test_6_non_existent_health_center(self):
-        try:
-            self.fetch_raw_results("healthcenter/999", expected_status=500)
-        except AssertionError as e:
-            print(f"Expected 404, got different status: {e}")
+    def test_non_existent_health_center(self):
+        """Test handling of non-existent health center ID."""
+        with self.assertRaises(AssertionError) as context:
+            self.fetch_results("healthcenter/999", expected_status=404)
 
-    def test_7_non_existent_nursing_home(self):
-        try:
-            self.fetch_raw_results("nursinghome/999", expected_status=500)
-        except AssertionError as e:
-            print(f"Expected 404, got different status: {e}")
+    def test_non_existent_nursing_home(self):
+        """Test handling of non-existent nursing home ID."""
+        with self.assertRaises(AssertionError) as context:
+            self.fetch_results("nursinghome/999", expected_status=404)
 
-    def test_8_non_existent_entertainment(self):
-        try:
-            self.fetch_raw_results("entertainment/999", expected_status=500)
-        except AssertionError as e:
-            print(f"Expected 404, got different status: {e}")
+    def test_non_existent_entertainment(self):
+        """Test handling of non-existent entertainment ID."""
+        with self.assertRaises(AssertionError) as context:
+            self.fetch_results("entertainment/999", expected_status=404)
 
-    def test_9_home_route(self):
-        self.fetch_raw_results("", expected_status=404)
+    def test_home_route_not_found(self):
+        """Test that the home route correctly returns a not found error."""
+        self.fetch_results("", expected_status=404)
 
 
 # Runs the unit tests
