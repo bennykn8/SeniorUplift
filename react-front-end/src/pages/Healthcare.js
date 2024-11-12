@@ -66,6 +66,21 @@ const Healthcare = () => {
     }
   };
 
+  const highlightSearchTerm = (text) => {
+    if (!searchQuery) return text;
+    const regex = new RegExp(`(${searchQuery})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, index) =>
+      regex.test(part) ? (
+        <span key={index} className="highlight">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -135,8 +150,8 @@ const Healthcare = () => {
             ) : (
               <h3 className="fallback-name">{center.name}</h3>
             )}
-            <h3>{center.name}</h3>
-            <p>Location: {center.city}</p>
+            <h3>{highlightSearchTerm(center.name)}</h3>
+            <p>Location: {highlightSearchTerm(center.city)}</p>
             <p>Beds: {center.beds || 'N/A'}</p>
             <p>Discharges: {center.discharges || 'N/A'}</p>
             <p>Patient Days: {center.patient_days || 'N/A'}</p>
