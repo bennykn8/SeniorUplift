@@ -1,0 +1,25 @@
+/* SubNavbar.css */
+.sub-navbar {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #7d7d7d;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 3rem;
+  }
+  
+  .sub-nav-button {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem; /* Add padding for better clickable area */
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    border-radius: 4px; /* Optional: rounded corners for a modern look */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+  
+  .sub-nav-button:hover {
+    background-color: #000; /* Black background on hover */
+    color: #fff; /* White text on hover */
+  }
+  

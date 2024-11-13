@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaHospitalUser } from "react-icons/fa";
+import { NavLink, useNavigate } from 'react-router-dom';
+import { FaHospitalUser, FaSearch } from "react-icons/fa";
 
 import './Navbar.css';
 
@@ -9,6 +9,17 @@ const Navbar = () => {
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search/healthcenters?query=${searchQuery.trim()}`);
+    }
+    setSearchQuery('');
   };
 
   return (
@@ -67,6 +78,19 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+          <form className="d-flex search-form" onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              className="form-control me-2"
+              placeholder="Search"
+              aria-label="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="btn btn-outline-dark" type="submit">
+              <FaSearch />
+            </button>
+          </form>
         </div>
       </div>
     </nav>

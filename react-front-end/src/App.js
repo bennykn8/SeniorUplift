@@ -22,6 +22,10 @@ import NursingHomeDetail from './pages/NursingHomeDetail';
 import EntertainmentDetail from './pages/EntertainmentDetail'; 
 import HealthcareDetail from './pages/HealthcareDetail';
 
+import GeneralSearch from './pages/GenSearchHC';
+import GSNH from './pages/GenSearchNH';
+import GSE from './pages/GenSearchE';
+
 function App() {
   return (
     <div className="App">
@@ -36,6 +40,9 @@ function App() {
           <Route path="/healthcenters/:id" element={<HealthcareDetail />} />
           <Route path="/entertainment" element={<Entertainment />} />
           <Route path="/entertainments/:id" element={<EntertainmentDetail />} />
+          <Route path="/search/healthcenters" element={<GeneralSearch />} />
+          <Route path="/search/nursinghomes" element={<GSNH />} />
+          <Route path="/search/entertainment" element={<GSE />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Router>

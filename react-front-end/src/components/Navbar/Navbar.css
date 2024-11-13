@@ -20,3 +20,15 @@
 .nav-link:hover {
     background-color: rgba(34, 34, 34, 0.1);
 }
+
+.navbar .search-form {
+    margin-left: auto; /* Pushes the search form to the right */
+}
+  
+.search-form input {
+width: 200px; /* Set desired width */
+}
+
+.search-form button {
+border: none;
+}
