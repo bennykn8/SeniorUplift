@@ -11,7 +11,7 @@ const Entertainment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
   const navigate = useNavigate();
 
   const fetchEntertainment = async (updatedFilters) => {

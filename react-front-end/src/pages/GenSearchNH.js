@@ -12,7 +12,7 @@ const GSNH = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const homesPerPage = 9;
+  const homesPerPage = 12;
   const navigate = useNavigate();
   const location = useLocation();
 

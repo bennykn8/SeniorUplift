@@ -11,7 +11,7 @@ const Healthcare = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const centersPerPage = 9;
+  const centersPerPage = 12;
   const navigate = useNavigate();
 
   const fetchHealthcareCenters = async (updatedFilters) => {
