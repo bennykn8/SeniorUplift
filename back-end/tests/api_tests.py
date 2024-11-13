@@ -56,6 +56,29 @@ class TestAPIEndpoints(unittest.TestCase):
         data = response.json()
         self.assertIsInstance(data, dict)
 
+    ### Filtering Tests ###
+
+    def test_filter_health_centers_by_city(self):
+        """Test filtering health centers by city."""
+        response = self.fetch_results("healthcenters/?city=Dallas")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
+
+    def test_filter_nursing_homes_by_rating(self):
+        """Test filtering nursing homes by rating."""
+        response = self.fetch_results("nursinghomes/?rating=4.5")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
+
+    def test_filter_entertainments_by_category(self):
+        """Test filtering entertainments by category."""
+        response = self.fetch_results("entertainments/?category=Concert")
+        self.assertTrue('application/json' in response.headers['Content-Type'])
+        data = response.json()
+        self.assertIsInstance(data, list)
+
     def test_non_existent_health_center(self):
         """Test handling of non-existent health center ID."""
         with self.assertRaises(AssertionError) as context:
