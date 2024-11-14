@@ -87,14 +87,14 @@ Phase Leader Responsibilities: Phase leader Rohan keeps track of meeting times, 
 Final Git SHA for Phase 1: b48f1ec50ba4a88d7988c4f5f10e2720e9c107f9
 
 
-Estimated Time Completion Phase 1:
+Estimated Time Completion Phase 2:
 Rohan Aggarwal - 20 hrs
 Rikhil Kalidindi - 20 hrs
 Pranav Akkaraju - 20 hrs
 Will Kung - 20 hrs
 Benny Nguyen - 20 hrs
 
-Actual Time Completion Phase 1:
+Actual Time Completion Phase 2:
 Rohan Aggarwal - 40 hrs
 Rikhil Kalidindi - 20 hrs
 Pranav Akkaraju - 20 hrs
@@ -105,3 +105,23 @@ Phase Leader: Benny Nguyen
 Phase Leader Responsibilities: Phase leader Benny keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
 
 Final Git SHA for Phase 2: TO DO
+
+
+Estimated Time Completion Phase 3:
+Rohan Aggarwal - 10 hrs
+Rikhil Kalidindi - 10 hrs
+Pranav Akkaraju - 10 hrs
+Will Kung - 10 hrs
+Benny Nguyen - 10 hrs
+
+Actual Time Completion Phase 3:
+Rohan Aggarwal - 10 hrs
+Rikhil Kalidindi - 5 hrs
+Pranav Akkaraju - 8 hrs
+Will Kung - 9 hrs
+Benny Nguyen - 10 hrs
+
+Phase Leader: Rikhil Kalidindi
+Phase Leader Responsibilities: Phase leader Rikhil keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
+
+Final Git SHA for Phase 3: TO DO
