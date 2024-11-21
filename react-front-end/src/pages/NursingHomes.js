@@ -121,7 +121,7 @@ const NursingHomes = () => {
           <option value="name">Sort by Name</option>
           <option value="address">Sort by Address</option>
           <option value="rating">Sort by Rating</option>
-          <option value="city">Sort by City</option>
+          <option value="phone">Sort by Phone</option>
 
 
         </select>
@@ -152,7 +152,6 @@ const NursingHomes = () => {
 
             <h3>{highlightSearchTerm(home.name)}</h3>
             <p>Location: {highlightSearchTerm(home.address)}</p>
-            <p>City: {highlightSearchTerm(home.city)}</p>
             <p>Rating: {home.rating ? `${home.rating}/5` : 'No rating available'}</p>
             <p>Phone: {home.phone || 'Phone not available'}</p>
             <p>

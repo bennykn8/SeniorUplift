@@ -124,6 +124,7 @@ const GSNH = () => {
           <option value="name">Sort by Name</option>
           <option value="address">Sort by Address</option>
           <option value="rating">Sort by Rating</option>
+          <option value="phone">Sort by Phone</option>
         </select>
         <select
           name="descend"
