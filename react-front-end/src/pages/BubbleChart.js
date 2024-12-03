@@ -108,7 +108,6 @@ const HealthCenterBubblePlot = () => {
       .attr('y', -20) // Adjusted position for title
       .attr('text-anchor', 'middle')
       .style('font-size', '16px')
-      .text('Health Centers by City and Beds');
   };
 
   return <div ref={chartRef}></div>;
