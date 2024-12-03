@@ -1,5 +1,6 @@
 import React from 'react';
 import BarChart from './BarChart';
+import HealthCenterBubblePlot from './BubbleChart';
 
 
 const Visualizations = () => {
@@ -10,6 +11,7 @@ const Visualizations = () => {
         <BarChart />
         <h1>Elderly Homes City Ratings</h1>
         <h1>Most Frequent Hospital Locations</h1>
+        <HealthCenterBubblePlot />
       </div>
     </div>
   );
