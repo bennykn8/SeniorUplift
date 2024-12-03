@@ -77,6 +77,24 @@ const Navbar = () => {
                 Entertainment
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/Visualizations"
+                style={({ isActive }) => ({ color: isActive ? 'dark' : 'dark' })}
+              >
+                Visualizations
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/ProviderVisualizations"
+                style={({ isActive }) => ({ color: isActive ? 'dark' : 'dark' })}
+              >
+                Provider Visualizations
+              </NavLink>
+            </li>
           </ul>
           <form className="d-flex search-form" onSubmit={handleSearchSubmit}>
             <input

@@ -21,6 +21,8 @@ import Entertainment from './pages/Entertainment';
 import NursingHomeDetail from './pages/NursingHomeDetail';
 import EntertainmentDetail from './pages/EntertainmentDetail'; 
 import HealthcareDetail from './pages/HealthcareDetail';
+import Visualizations from './pages/Visualizations';
+import ProviderVisualizations from './pages/ProviderVisualizations';
 
 import GeneralSearch from './pages/GenSearchHC';
 import GSNH from './pages/GenSearchNH';
@@ -43,6 +45,9 @@ function App() {
           <Route path="/search/healthcenters" element={<GeneralSearch />} />
           <Route path="/search/nursinghomes" element={<GSNH />} />
           <Route path="/search/entertainment" element={<GSE />} />
+          <Route path="/Visualizations" element={<Visualizations />} />
+          <Route path="/ProviderVisualizations" element={<ProviderVisualizations />} />
+          
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Router>
