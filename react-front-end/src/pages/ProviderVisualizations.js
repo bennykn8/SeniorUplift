@@ -2,7 +2,7 @@ import React from 'react';
 
 const CritiqueSection = ({ title, content }) => (
   <section style={{ marginBottom: '20px' }}>
-    <h2>{title}</h2>
+    <h3 style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '10px' }}>{title}</h3>
     <div>{content}</div>
   </section>
 );
@@ -133,7 +133,7 @@ const ProviderVisualizations = () => {
           <CritiqueSection key={index} title={critique.title} content={critique.content} />
         ))}
 
-        <h1>Developer Group Critiques</h1>
+        <h1>Other Critiques</h1>
         {otherCritiques.map((critique, index) => (
           <CritiqueSection key={index} title={critique.title} content={critique.content} />
         ))}
