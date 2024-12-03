@@ -133,7 +133,7 @@ const ProviderVisualizations = () => {
           <CritiqueSection key={index} title={critique.title} content={critique.content} />
         ))}
 
-        <h1>Other Critiques</h1>
+        <h1>Developer Group Critiques</h1>
         {otherCritiques.map((critique, index) => (
           <CritiqueSection key={index} title={critique.title} content={critique.content} />
         ))}
