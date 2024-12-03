@@ -46,7 +46,7 @@ const BarChart = () => {
     const svg = d3.select(svgRef.current);
     const width = 900;
     const height = 500;
-    const margin = { top: 30, right: 30, bottom: 70, left: 60 };
+    const margin = { top: 30, right: 30, bottom: 100, left: 60 }; // Increased bottom margin
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
@@ -61,6 +61,7 @@ const BarChart = () => {
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(categoryCounts, (d) => d.count)])
+      .nice()
       .range([innerHeight, 0]);
 
     const g = svg
@@ -69,6 +70,7 @@ const BarChart = () => {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    // Add bars with hover effect
     g.selectAll('rect')
       .data(categoryCounts)
       .join('rect')
@@ -76,23 +78,40 @@ const BarChart = () => {
       .attr('y', (d) => y(d.count))
       .attr('width', x.bandwidth())
       .attr('height', (d) => innerHeight - y(d.count))
-      .attr('fill', 'steelblue');
+      .attr('fill', 'steelblue')
+      .on('mouseover', function () {
+        d3.select(this).attr('fill', 'darkblue'); // Change color on hover
+      })
+      .on('mouseout', function () {
+        d3.select(this).attr('fill', 'steelblue'); // Revert color on mouseout
+      });
 
+    // Add numbers at the top of each bar
+    g.selectAll('text.bar-label')
+      .data(categoryCounts)
+      .join('text')
+      .attr('class', 'bar-label')
+      .attr('x', (d) => x(d.category) + x.bandwidth() / 2)
+      .attr('y', (d) => y(d.count) - 5)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '12px')
+      .attr('font-weight', 'bold')
+      .attr('fill', 'black')
+      .text((d) => d.count);
+
+    // Add x-axis
     g.append('g')
       .attr('transform', `translate(0,${innerHeight})`)
       .call(d3.axisBottom(x))
       .selectAll('text')
-      .attr('transform', 'rotate(-45)')
-      .style('text-anchor', 'end');
+      .attr('transform', 'rotate(-45)') // Rotate labels for readability
+      .style('text-anchor', 'end')
+      .style('font-size', '12px'); // Adjust font size for better fit
 
+    // Add y-axis
     g.append('g').call(d3.axisLeft(y));
 
-    g.append('text')
-      .attr('x', innerWidth / 2)
-      .attr('y', innerHeight + margin.bottom - 10)
-      .attr('text-anchor', 'middle')
-      .text('Event Categories');
-
+    // Add axis labels
     g.append('text')
       .attr('x', -innerHeight / 2)
       .attr('y', -margin.left + 20)
@@ -103,7 +122,6 @@ const BarChart = () => {
 
   return (
     <div>
-      <h1>Event Categories Bar Chart</h1>
       <svg ref={svgRef}></svg>
     </div>
   );
