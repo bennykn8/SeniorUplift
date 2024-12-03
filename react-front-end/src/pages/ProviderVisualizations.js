@@ -1,4 +1,5 @@
 import React from 'react';
+import ConditionsPieChart from './ProviderConditionPieChart';
 
 const CritiqueSection = ({ title, content }) => (
   <section style={{ marginBottom: '20px' }}>
@@ -127,6 +128,14 @@ const ProviderVisualizations = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
+
+      <div style={{ marginBottom: '40px' }}> {/* Add margin-bottom */}
+        <h1>Conditions Age Group Distribution</h1>
+        <ConditionsPieChart />
+        <h1>Elderly Homes City Ratings</h1>
+        <h1>Most Frequent Hospital Locations</h1>
+      </div>
+
       <div style={{ margin: '0 auto', maxWidth: '1000px' }}>
         <h1>Self-Critiques</h1>
         {selfCritiques.map((critique, index) => (

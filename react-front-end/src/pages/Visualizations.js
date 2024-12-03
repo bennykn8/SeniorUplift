@@ -5,12 +5,12 @@ import BubbleMap from './BubbleMap';
 
 const Visualizations = () => {
   const titleStyle = {
-    fontSize: '2rem', // Larger font size
-    fontWeight: 'bold', // Bold text
-    color: '#333', // Darker color for contrast
-    textTransform: 'uppercase', // Make the titles uppercase
-    margin: '20px 0', // Add spacing above and below
-    textDecoration: 'underline', // Add underline for emphasis
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#333', 
+    textTransform: 'uppercase', 
+    margin: '20px 0', 
+    textDecoration: 'underline', 
   };
 
   return (
