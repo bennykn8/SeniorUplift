@@ -94,7 +94,7 @@ const Visualizations = () => {
       </div>
 
       <div style={{ margin: '0 auto', maxWidth: '1000px' }}>
-        <h1>Self-Critiques</h1>
+      <h1 style={titleStyle}>Self-Critiques</h1>
         {selfCritiques.map((critique, index) => (
           <CritiqueSection key={index} title={critique.title} content={critique.content} />
         ))}

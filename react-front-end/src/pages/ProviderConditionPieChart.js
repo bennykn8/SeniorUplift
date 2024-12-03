@@ -17,7 +17,7 @@ const ConditionsPieChart = () => {
         // Process data to group by age_group
         const groupedData = d3.rollups(
           apiData,
-          v => v.length, // Count the number of conditions in each age group
+          v => v.length, 
           d => d.age_group
         ).map(([age_group, value]) => ({ age_group, value }));
 
@@ -93,7 +93,7 @@ const ConditionsPieChart = () => {
         // Adjust label position dynamically to avoid overlap
         let adjustedY = y;
         labelPositions.forEach(existing => {
-          if (Math.abs(existing.y - y) < 14) { // If too close, adjust position
+          if (Math.abs(existing.y - y) < 14) { 
             adjustedY = y + (y > 0 ? 14 : -14);
           }
         });

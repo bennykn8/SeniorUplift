@@ -8,7 +8,7 @@ const TreatmentsBarChart = () => {
   const height = 500;
   const marginTop = 30;
   const marginRight = 30;
-  const marginBottom = 100; // Increased for treatment type labels
+  const marginBottom = 100; 
   const marginLeft = 50;
 
   const [data, setData] = useState([]);
@@ -24,7 +24,7 @@ const TreatmentsBarChart = () => {
         // Aggregate data by treatment_type
         const groupedData = d3.rollups(
           apiData,
-          (v) => v.length, // Count the number of treatments in each type
+          (v) => v.length,
           (d) => d.treatment_type
         ).map(([treatment_type, frequency]) => ({
           treatment_type,
@@ -54,12 +54,12 @@ const TreatmentsBarChart = () => {
       .scaleBand()
       .domain(data.map((d) => d.treatment_type))
       .range([marginLeft, width - marginRight])
-      .padding(0.2); // Add spacing between bars
+      .padding(0.2); 
 
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => d.frequency)])
-      .nice() // Adjusts the domain to nice round values
+      .nice() 
       .range([height - marginBottom, marginTop]);
 
     const format = d3.format(",");
@@ -96,7 +96,7 @@ const TreatmentsBarChart = () => {
     // Append a rect for each treatment type
     svg
       .append("g")
-      .attr("fill", "url(#gradient)") // Apply gradient fill
+      .attr("fill", "url(#gradient)") 
       .selectAll("rect")
       .data(data)
       .join("rect")
@@ -124,7 +124,7 @@ const TreatmentsBarChart = () => {
       .call(d3.axisBottom(x).tickSizeOuter(0))
       .selectAll("text")
       .attr("text-anchor", "end")
-      .attr("transform", "rotate(-45)") // Rotate x-axis labels for readability
+      .attr("transform", "rotate(-45)") 
       .style("font-size", "10px");
 
     svg

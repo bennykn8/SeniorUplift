@@ -1,6 +1,7 @@
 import React from 'react';
 import ConditionsPieChart from './ProviderConditionPieChart';
 import TreatmentsBarChart from './ProviderTreatmentBar';
+import ResourcesScatterPlot from './ProviderResourcesScatterPlot'
 
 const CritiqueSection = ({ title, content }) => (
   <section style={{ marginBottom: '20px' }}>
@@ -67,25 +68,35 @@ const ProviderVisualizations = () => {
     },
   ];
 
-  return (
-    <div style={{ textAlign: 'center' }}>
+  const titleStyle = {
+  fontSize: '2rem',
+  fontWeight: 'bold',
+  color: '#333',
+  textTransform: 'uppercase',
+  margin: '20px 0',
+  textDecoration: 'underline',
+};
 
-      <div style={{ marginBottom: '40px' }}> {/* Add margin-bottom */}
-        <h1>Conditions Age Group Distribution</h1>
-        <ConditionsPieChart />
-        <h1>Treatment Type Distribution</h1>
-        <TreatmentsBarChart />
-        <h1>Most Frequent Hospital Locations</h1>
-      </div>
-
-      <div style={{ margin: '0 auto', maxWidth: '1000px' }}>
-        <h1>Other Critiques</h1>
-        {otherCritiques.map((critique, index) => (
-          <CritiqueSection key={index} title={critique.title} content={critique.content} />
-        ))}
-      </div>
+return (
+  <div style={{ textAlign: 'center' }}>
+    <div style={{ marginBottom: '40px' }}>
+      <h1 style={titleStyle}>Conditions Age Group Distribution</h1>
+      <ConditionsPieChart />
+      <h1 style={titleStyle}>Treatment Type Distribution</h1>
+      <TreatmentsBarChart />
+      <h1 style={titleStyle}>Age Range Acceptance</h1>
+      <ResourcesScatterPlot />
     </div>
-  );
+
+    <div style={{ margin: '0 auto', maxWidth: '1000px' }}>
+      <h1 style={titleStyle}>Other-Critiques</h1>
+      {otherCritiques.map((critique, index) => (
+        <CritiqueSection key={index} title={critique.title} content={critique.content} />
+      ))}
+    </div>
+  </div>
+);
+
 };
 
 export default ProviderVisualizations;
