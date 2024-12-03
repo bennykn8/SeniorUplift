@@ -11,7 +11,7 @@ const BarChart = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'https://cs373backend.elderhelpertexas.me/events/'
+          'https://api.senioruplift.me/api/entertainments/'
         );
         setData(response.data);
       } catch (error) {
@@ -24,7 +24,7 @@ const BarChart = () => {
   useEffect(() => {
     if (data.length) {
       const eventCategories = data
-        .map((event) => event.event_category)
+        .map((event) => event.category)
         .filter((category) => category);
 
       const counts = eventCategories.reduce((acc, category) => {
@@ -46,7 +46,7 @@ const BarChart = () => {
     const svg = d3.select(svgRef.current);
     const width = 900;
     const height = 500;
-    const margin = { top: 30, right: 30, bottom: 100, left: 60 }; // Increased bottom margin
+    const margin = { top: 30, right: 30, bottom: 100, left: 60 }; 
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
@@ -80,10 +80,10 @@ const BarChart = () => {
       .attr('height', (d) => innerHeight - y(d.count))
       .attr('fill', 'steelblue')
       .on('mouseover', function () {
-        d3.select(this).attr('fill', 'darkblue'); // Change color on hover
+        d3.select(this).attr('fill', 'darkblue'); 
       })
       .on('mouseout', function () {
-        d3.select(this).attr('fill', 'steelblue'); // Revert color on mouseout
+        d3.select(this).attr('fill', 'steelblue'); 
       });
 
     // Add numbers at the top of each bar
@@ -104,9 +104,9 @@ const BarChart = () => {
       .attr('transform', `translate(0,${innerHeight})`)
       .call(d3.axisBottom(x))
       .selectAll('text')
-      .attr('transform', 'rotate(-45)') // Rotate labels for readability
+      .attr('transform', 'rotate(-45)') 
       .style('text-anchor', 'end')
-      .style('font-size', '12px'); // Adjust font size for better fit
+      .style('font-size', '12px'); 
 
     // Add y-axis
     g.append('g').call(d3.axisLeft(y));
