@@ -26,7 +26,7 @@
 }
   
 .search-form input {
-width: 200px; /* Set desired width */
+width: 100%; /* Set desired width */
 }
 
 .search-form button {
