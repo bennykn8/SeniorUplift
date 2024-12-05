@@ -125,3 +125,22 @@ Phase Leader: Rikhil Kalidindi
 Phase Leader Responsibilities: Phase leader Rikhil keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
 
 Final Git SHA for Phase 3: TO DO
+
+Estimated Time Completion Phase 4:
+Rohan Aggarwal - 6 hrs
+Rikhil Kalidindi - 7 hrs
+Pranav Akkaraju - 7 hrs
+Will Kung - 5 hrs
+Benny Nguyen - 6 hrs
+
+Actual Time Completion Phase 4:
+Rohan Aggarwal - 5 hrs
+Rikhil Kalidindi - 5 hrs
+Pranav Akkaraju - 5 hrs
+Will Kung - 5 hrs
+Benny Nguyen - 5 hrs
+
+Phase Leader: Will Kung
+Phase Leader Responsibilities: Phase leader Will keeps track of meeting times, current status of the project, double checks everything is completed for the project, and maintains list of what is left to do.
+
+Final Git SHA for Phase 4: 8d59d465be7b494d53c4b73d53747c9958456a07
